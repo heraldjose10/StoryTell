@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename = '/css/reset_css.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename = '/css/header.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename = '/css/footer.css') }}">
+    {% block styles %}
+    {% endblock styles %}
+    {% if title %}
+        <title>{{ title }}</title>
+    {% else %}
+        <title>MyBlog</title>
+    {% endif %}
+</head>
+<body>
+    {% block header %}
+        <header class="black">
+            <div class="head-container">
+                <nav>
+                    <div class="nav-link mobile-banner">
+                        <a href="index.html" class="main-banner">
+                            <h1>
+                                BLOGNAME
+                            </h1>
+                        </a>
+                    </div>
+                    <div class="list-wrapper">
+                        <ul class="list">
+                            <li class="nav-link">
+                                <a href="index.html" class="options">HOME</a>
+                            </li>
+                            <li class="nav-link">
+                                <a href="" class="options">OPTION1</a>
+                            </li>
+                            <li class="nav-link">
+                                <a href="" class="options">OPTION1</a>
+                            </li>
+                            <li class="nav-link">
+                                <a href="" class="options">OPTION1</a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+        </header>
+    {% endblock header %}
+
+    {% block main %}
+    {% endblock %}
+
+    {% block footer %}
+        <footer>
+            <ul>
+                <li>
+                    <a href="">FACEBOOK</a>
+                </li>
+                <li>
+                    <a href="">TWITTER</a>
+                </li>
+                <li>
+                    <a href="">INSTAGRAM</a>
+                </li>
+                <li>
+                    <a href="">YOUTUBE</a>
+                </li>
+            </ul>
+        </footer>
+    {% endblock %}
+</body>
+</html>

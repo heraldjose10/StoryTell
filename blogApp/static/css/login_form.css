@@ -1,0 +1,62 @@
+.author-login{
+    font-family: Helvetica;
+    font-size: xx-large;
+    padding-bottom: 30px;
+}
+.formset{
+    font-family: Verdana;
+    font-size: larger;
+    padding-bottom: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 400px;
+}
+.formset div span{
+    font-size: 10px;
+}
+.login-input{
+    width: 250px;
+}
+.error-input-box{
+    border-color: red;
+}
+main{
+    justify-items: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 40vh;
+}
+main div{
+    max-width: 768px;
+}
+.login-button{
+    font-family: Verdana;
+    background-color: black;
+    color: white;
+    width: 80px;
+    height: 30px;
+    border: none;
+    font-size: large;
+    padding:  0px;
+    
+}
+.login-button:hover{
+    color: black;
+    background-color: white;
+    border: 1px solid black;
+}
+@media screen and (max-width: 480px){
+    .login-input{
+        max-width: 80vw;
+    }
+    .formset{
+        max-width: 90vw;
+        min-width: 0;
+        flex-direction: column;
+    }
+    .formset label{
+        padding-bottom: 10px;
+    }
+}

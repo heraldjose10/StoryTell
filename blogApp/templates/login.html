@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{{ url_for('static', filename = '/css/login_form.css') }}">
+{% endblock styles %}
+
+{% block main %}
+    <main>
+        <div>
+            <form method="POST" action="">
+                {{ form.hidden_tag() }}
+                <fieldset>
+                    <legend class="author-login">Author Login</legend>
+                    <div class="formset">
+                        {{ form.email.label() }}
+                        {% if form.email.errors %}
+                            {{ form.email(class = "login-input error-input-box") }}
+                            <div>
+                                {% for error in form.email.errors %}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ form.email(class = "login-input ") }}
+                        {% endif %}
+                    </div>
+                    <div class="formset">
+                        {{ form.password.label() }}
+                        {% if form.password.errors %}
+                            {{ form.password(class = "login-input error-input-box") }}
+                            <div>
+                                {% for error in form.password.errors %}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ form.password(class = "login-input") }}
+                        {% endif %}
+                    </div>
+                </fieldset>
+                <div class="formset">
+                    {{ form.login(class = 'login-button') }}
+                </div>
+            </form>
+        </div>
+    </main>
+{% endblock main %}
