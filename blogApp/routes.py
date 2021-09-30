@@ -6,7 +6,8 @@ from blogApp.models import Authors, Blogs, Tags
 
 @app.route('/')
 def index():
-    return render_template('home.html')
+    blogs = Blogs.query.limit(9).all()
+    return render_template('home.html', title = 'Home', blogs = blogs)
 
 @app.route('/author', methods = ['GET','POST'])
 def author():

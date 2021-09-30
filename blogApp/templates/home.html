@@ -8,67 +8,23 @@
     <main>
         <h1 class="recent-posts-header">RECENT POSTS</h1>
         <div class="recents">
-            <div class="card">
-                <a href="http://" class="postlink">
-                    <div class="post">
-                        <img src="{{ url_for('static', filename = 'assets/cool-1878975_640 (1).jpg') }}">
-                        <h2>Asemic writing is a wordless open semantic form of writing</h2>
-                    </div>
-                </a>
-                <ul class="tags">
-                    <li>
-                        <a href="">tag1</a>
-                    </li>
-                    <li>
-                        <a href="">tag1</a>
-                    </li>
-                    <li>
-                        <a href="">tag1</a>
-                    </li>
-                </ul>
-
-            </div>
-            <div class="card">
-                <a href="http://" class="postlink">
-                    <div class="post">
-                        <img src="{{ url_for('static', filename = 'assets/video-game-4375824_640 (1).jpg') }}">
-                        <h2>content", or "without the smallest unit of meaning". With the non-specificity of asemic
-                            writing there comes a vacuum of meaning</h2>
-                    </div>
-                </a>
-                <ul class="tags">
-                    <li>
-                        <a href="">tag1</a>
-                    </li>
-                    <li>
-                        <a href="">tag1</a>
-                    </li>
-                    <li>
-                        <a href="">tag1</a>
-                    </li>
-                </ul>
-
-            </div>
-            <div class="card">
-                <a href="http://" class="postlink">
-                    <div class="post">
-                        <img src="{{ url_for('static', filename = 'assets/dice-3255768_640 (1).jpg') }}">
-                        <h2>Post Heading</h2>
-                    </div>
-                </a>
-                <ul class="tags">
-                    <li>
-                        <a href="">tag1</a>
-                    </li>
-                    <li>
-                        <a href="">tag1</a>
-                    </li>
-                    <li>
-                        <a href="">tag1</a>
-                    </li>
-                </ul>
-
-            </div>
+            {% for blog in blogs %}
+                <div class="card">
+                    <a href="http://" class="postlink">
+                        <div class="post">
+                            <img src="{{ url_for('static', filename = 'assets/thumbnails/{}'.format(blog.thumbnail)) }}">
+                            <h2>{{ blog.title }}</h2>
+                        </div>
+                    </a>
+                    <ul class="tags">
+                        {% for tag in blog.tags %}
+                            <li>
+                                <a href="">{{ '#'+tag.name }}</a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endfor %}
         </div>
     </main>
 {% endblock main %}
