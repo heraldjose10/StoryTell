@@ -1,5 +1,5 @@
 from flask import render_template, url_for, redirect
-from blogApp import app
+from blogApp import app, bcrypt
 from blogApp.forms import AuthorLogin
 from blogApp.models import Authors, Blogs, Tags
 
@@ -12,6 +12,7 @@ def index():
 def author():
     form = AuthorLogin()
     if form.validate_on_submit():
-        if form.email.data == 'admin@mail.com' and form.password.data == 'admin':
+        user = Authors.query.filter_by(email = form.email.data).first()
+        if user and bcrypt.check_password_hash(user.password, form.password.data):
             return redirect(url_for('index'))
     return render_template('login.html', form = form)
