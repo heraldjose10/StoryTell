@@ -1,7 +1,7 @@
-from flask import render_template, url_for
-from werkzeug.utils import redirect
+from flask import render_template, url_for, redirect
 from blogApp import app
 from blogApp.forms import AuthorLogin
+from blogApp.models import Authors, Blogs, Tags
 
 
 @app.route('/')
