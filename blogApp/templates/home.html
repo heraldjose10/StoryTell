@@ -10,7 +10,7 @@
         <div class="recents">
             {% for blog in blogs %}
                 <div class="card">
-                    <a href="http://" class="postlink">
+                    <a href="{{ url_for('blogpage', blogid = blog.id) }}" class="postlink">
                         <div class="post">
                             <img src="{{ url_for('static', filename = 'assets/thumbnails/{}'.format(blog.thumbnail)) }}">
                             <h2>{{ blog.title }}</h2>

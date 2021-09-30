@@ -17,3 +17,8 @@ def author():
         if user and bcrypt.check_password_hash(user.password, form.password.data):
             return redirect(url_for('index'))
     return render_template('login.html', form = form)
+
+@app.route('/blog/<blogid>')
+def blogpage(blogid):
+    blog = Blogs.query.get(int(blogid))
+    return render_template('blogpage.html', blog = blog)
