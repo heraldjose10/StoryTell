@@ -37,6 +37,19 @@
                             {{ form.password(class = "login-input") }}
                         {% endif %}
                     </div>
+                    <div class="remember">
+                        {{ form.remember.label() }}
+                        {% if form.remember.errors %}
+                            {{ form.remember(class = "remember-check error-input-box") }}
+                            <div>
+                                {% for error in form.remember.errors %}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ form.remember(class = "remember-check") }}
+                        {% endif %}
+                    </div>
                 </fieldset>
                 <div class="formset">
                     {{ form.login(class = 'login-button') }}

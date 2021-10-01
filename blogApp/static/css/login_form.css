@@ -12,6 +12,19 @@
     justify-content: space-between;
     width: 400px;
 }
+.remember{
+    font-family: Verdana;
+    font-size: larger;
+    padding-bottom: 10px;
+    display: flex;
+    align-items: center;
+}
+.remember-check{
+    margin: 0;
+    width: 16px;
+    height: 16px;
+    margin-left: 5px;
+}
 .formset div span{
     font-size: 10px;
 }
@@ -53,10 +66,14 @@ main div{
     }
     .formset{
         max-width: 90vw;
+        width: fit-content;
         min-width: 0;
         flex-direction: column;
     }
     .formset label{
         padding-bottom: 10px;
+    }
+    .remember{
+        align-items: flex-end;
     }
 }

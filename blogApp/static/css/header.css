@@ -1,14 +1,18 @@
 header{
     font-family: Verdana;
+    display: flex;
+    justify-content: center;
 }
 header a{
     text-decoration: none;
 }
+
 .black{
     background-color: black;
 }
 .head-container{
-    display: block;
+    /* display: block; */
+    width: fit-content;
     margin: 0px 7%;
     position: relative;
 }
@@ -47,6 +51,8 @@ nav{
     display: flex !important;
     justify-content: space-between;
     align-items: center;
+    width: 80vw;
+    max-width: 900px;
 }
 @media screen and (max-width: 480px) {
     .black{
@@ -54,6 +60,7 @@ nav{
     }
     nav{
         flex-direction: column;
+        width: 100vw;
     }
     .list{
         flex-direction: column;

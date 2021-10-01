@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Fjalla+One&family=Open+Sans&display=swap');
+main{
+    min-height: 70vh;
+    display: flex;
+    justify-content: center;
+    margin: 5vh 0;
+}
+main h1{
+    font-size: xx-large;
+    font-family: 'Fjalla One', sans-serif;
+    letter-spacing: .05em;
+    margin-bottom: 5%;
+    line-height: 120%;
+    text-align: left;
+}
+.blog-container{
+    width: 80vw;
+    max-width: 900px;   
+}
+.content{
+    font-family: 'Open Sans', sans-serif;
+    color: rgb(53, 52, 52);
+    line-height: 120%;
+    text-align: left;
+}

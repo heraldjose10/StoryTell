@@ -1,10 +1,18 @@
 {% extends 'base.html' %}
 
+{% block styles %}
+    <link rel="stylesheet" href="{{ url_for('static', filename = '/css/blogpage.css') }}">
+{% endblock styles %}
+
 {% block main %}
-    <h1>
-        {{ blog.title }}
-    </h1>
-    <p>
-        {{ blog.content }}
-    </p>
+    <main>
+        <div class="blog-container">
+            <h1>
+                {{ blog.title }}
+            </h1>
+            <div class="content">
+                {{ blog.content }}
+            </div>
+        </div>
+    </main>
 {% endblock main %}
