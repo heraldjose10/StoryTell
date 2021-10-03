@@ -1,6 +1,7 @@
 from sqlalchemy.orm import backref
-from blogApp import db
+from blogApp import db, login_manager
 from datetime import datetime
+from flask_login import UserMixin
 
 
 blogtags = db.Table('blogtags',
@@ -11,7 +12,11 @@ blogtags = db.Table('blogtags',
                     )
 
 
-class Authors(db.Model):
+@login_manager.user_loader
+def load_user(user_id):
+    return Authors.query.get(int(user_id))
+
+class Authors(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(50), nullable=False)
     email = db.Column(db.String(50), unique=True, nullable=False)

@@ -2,19 +2,18 @@
 main{
     display: block;
     min-height: 80vh;
+    max-width: 1440px;
+    width: 80vw;
 }
 .recent-posts-header{
     font-size: xx-large;
     font-family: sans-serif;
-    /* display: inline; */
-    margin-left: 7vw;
     margin-top: 5vh;
 }
 .recents{
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
-    margin: 0 7vw ;
+    justify-content: flex-start;
 }
 .post img{
     height: 225px;
@@ -29,6 +28,7 @@ main{
     flex-wrap: wrap;
     flex-direction: column;
     margin: 5vh 0;
+    margin-right: 50px;
 }
 .card ul{
     list-style-type: none;
@@ -38,6 +38,14 @@ main{
     font-family: 'Roboto Slab', serif;
     margin: 5px 0px;
     width: 400px;
+    font-size: x-large;
+}
+.author-name{
+    font-family: 'Roboto Slab', serif;
+    margin-bottom: 5px;
+}
+.author-name a:hover{
+    color: red;
 }
 .tags li{
     margin-right: 10px;
@@ -57,6 +65,9 @@ main{
     .recent-posts-header{
         margin-top: 10px;
         margin-left: 0;
+    }
+    .card{
+        margin-right: 0px;
     }
     main{
         display: flex;  

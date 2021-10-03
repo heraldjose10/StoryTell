@@ -2,6 +2,7 @@ header{
     font-family: Verdana;
     display: flex;
     justify-content: center;
+    width: 100%;
 }
 header a{
     text-decoration: none;
@@ -34,7 +35,9 @@ header a{
     display: flex;
     justify-content: flex-end;
     width: 30vw;
-    justify-content: space-evenly;
+}
+.list li{
+    margin-left: 15px;
 }
 .options{
     color: white;
@@ -52,7 +55,7 @@ nav{
     justify-content: space-between;
     align-items: center;
     width: 80vw;
-    max-width: 900px;
+    max-width: 1440px;
 }
 @media screen and (max-width: 480px) {
     .black{
@@ -64,6 +67,9 @@ nav{
     }
     .list{
         flex-direction: column;
+    }
+    .list li{
+        margin-left: 0;
     }
     .options{
         color: black;

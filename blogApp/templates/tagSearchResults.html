@@ -1,14 +1,21 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
 
 {% block styles %}
-    <link rel="stylesheet" href="{{ url_for('static', filename = '/css/postsGrids.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename = '/css/tagSearch.css')  }}">
 {% endblock styles %}
 
 {% block main %}
     <main>
-        <h1 class="recent-posts-header">RECENT POSTS</h1>
-        <div class="recents">
-            {% for blog in blogs %}
+        <p>
+            <a href="">Tags</a>
+            >
+            <a href="{{ url_for('search', tagName = tag.name) }}">{{ tag.name }}</a>
+        </p>
+        <h1>
+            Posts for "{{ tag.name }}"
+        </h1>
+        <div class="results">
+            {% for blog in searchResult %}
                 <div class="card">
                     <a href="{{ url_for('blogpage', blogid = blog.id) }}" class="postlink">
                         <div class="post">

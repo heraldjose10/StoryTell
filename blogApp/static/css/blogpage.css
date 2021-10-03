@@ -2,14 +2,16 @@
 main{
     min-height: 70vh;
     display: flex;
-    justify-content: center;
+    justify-content: left;
     margin: 5vh 0;
+    max-width: 1440px;
+    width: 80vw;
 }
 main h1{
     font-size: xx-large;
     font-family: 'Fjalla One', sans-serif;
     letter-spacing: .05em;
-    margin-bottom: 5%;
+    margin-bottom: 10px;
     line-height: 120%;
     text-align: left;
 }
@@ -17,9 +19,39 @@ main h1{
     width: 80vw;
     max-width: 900px;   
 }
+.post-info{
+    margin-bottom: 10px;
+    font-family: 'Open Sans', sans-serif;
+}
+.post-info a{
+    text-decoration: none;
+}
+.post-info a:hover{
+    color: red;
+}
 .content{
+    margin-top: 50px;
     font-family: 'Open Sans', sans-serif;
     color: rgb(53, 52, 52);
     line-height: 120%;
     text-align: left;
+    margin-bottom: 50px;
+}
+.tags ul{
+    display: flex;
+    list-style-type: none;
+    font-family: 'Open Sans', sans-serif;
+    font-size: small;
+}
+.tags ul li{
+    margin-right: 5px;
+    background-color: rgb(233, 219, 219);
+    border-radius: 10px;
+    padding: .6ex 1.4ex;
+}
+.tags ul li a{
+    text-decoration: none;
+}
+.tags ul li a:hover{
+    color: red;
 }

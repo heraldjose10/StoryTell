@@ -10,8 +10,23 @@
             <h1>
                 {{ blog.title }}
             </h1>
+            <div class = "post-info">
+                <p>Posted by <a href="">{{ blog.author.name }}</a> </p>
+            </div>
+            <div class="post-info">
+                <p>On {{ blog._created }}</p>
+            </div>
             <div class="content">
                 {{ blog.content }}
+            </div>
+            <div class="tags">
+                <ul>
+                    {% for tag in blog.tags %}
+                        <li>
+                            <a href="{{ url_for('search', tagName = tag.name) }}">{{ tag.name }}</a>
+                        </li>
+                    {% endfor %}
+                </ul>
             </div>
         </div>
     </main>

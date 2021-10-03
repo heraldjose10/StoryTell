@@ -32,15 +32,24 @@
                             <li class="nav-link">
                                 <a href="{{ url_for('index') }}" class="options">HOME</a>
                             </li>
-                            <li class="nav-link">
-                                <a href="{{ url_for('author') }}" class="options">LOGIN</a>
-                            </li>
-                            <li class="nav-link">
-                                <a href="" class="options">OPTION1</a>
-                            </li>
-                            <li class="nav-link">
-                                <a href="" class="options">OPTION1</a>
-                            </li>
+                            {% if current_user.is_authenticated %}
+                                <li class="nav-link">
+                                    <a href="{{ url_for('write') }}" class="options">WRITE</a>
+                                </li>
+                                <li class="nav-link">
+                                    <a href="" class="options">PROFILE</a>
+                                </li>
+                                <li class="nav-link">
+                                    <a href="{{ url_for('logout') }}" class="options">LOGOUT</a>
+                                </li>
+                            {% else %}
+                                <li class="nav-link">
+                                    <a href="{{ url_for('author') }}" class="options">LOGIN</a>
+                                </li>
+                                <li class="nav-link">
+                                    <a href="" class="options">REGISTER</a>
+                                </li>
+                            {% endif %}
                         </ul>
                     </div>
                 </nav>

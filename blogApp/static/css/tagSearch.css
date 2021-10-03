@@ -1,0 +1,75 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fjalla+One');
+main{
+    min-height: 80vh;
+    max-width: 1440px;
+    width: 80vw;
+}
+main>p{
+    margin-top: 20px;
+    margin-bottom: 5px;
+}
+main>p a{
+    text-decoration: none;
+}
+main h1{
+    font-size: xx-large;
+    font-family: 'Fjalla One', sans-serif;
+    letter-spacing: 0.05em;
+}
+.results{
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+}
+.card{
+    margin-right: 50px;
+    margin: 5vh 0;
+    display: flex;
+    flex-direction: column;
+    margin-right: 50px;
+}
+.card a{
+    text-decoration: none;
+}
+.post h2{
+    font-family: 'Roboto Slab', serif;
+    margin: 5px 0px;
+    width: 400px;
+    font-size: x-large;
+    line-height: 120%;
+}
+.tags{
+    display: flex;
+    list-style: none;
+}
+.tags li{
+    margin-right: 10px;
+}
+.author-name{
+    font-family: 'Roboto Slab', serif;
+    margin-bottom: 5px;
+}
+.post img{
+    height: 225px;
+    width: 400px;
+}
+@media screen and (max-width: 480px){
+    .card{margin-right: 0;}
+    .results{
+        display: flex;
+        flex-direction: column;
+    }
+    .post img{
+        height: 180px;
+        width: 80vw;
+    }
+    main h1{
+        text-align: left;
+        line-height: 120%;
+    }
+    .post h2{
+        max-width: 80vw;
+    }
+}
