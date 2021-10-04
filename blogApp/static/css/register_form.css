@@ -1,0 +1,74 @@
+main{
+    display: flex;
+    min-height: 40vh;
+}
+fieldset{
+    display: flex;
+    flex-direction: column;
+}
+legend{
+    font-family: Helvetica;
+    font-size: xx-large;
+    padding-bottom: 30px;
+}
+.form-set{
+    flex-wrap: wrap;
+    display: flex;
+    width: 500px;
+    justify-content: space-between;
+    font-family: Verdana;
+    align-items: center;
+    font-size: larger;
+    margin-bottom: 10px;
+}
+.form-set div span{
+    font-size: 10px;
+    display: block;
+    width: 500px;
+}
+.error-input-box{
+    border-color: red;
+}
+.form-set input{
+    width: 280px;
+}
+.register-button{
+    font-family: Verdana;
+    color: white;
+    background-color: black;
+    border: none;
+    font-size: large;
+    padding: 0px;
+    height: 30px;
+    width: 80px;
+}
+.register-button:hover{
+    color: black;
+    background-color: white;
+    border: 1px solid black;
+}
+@media screen and (max-width: 480px){
+    fieldset{
+        width: 250px;
+    }
+    .form-set{
+        align-items: center;
+    }
+    .form-set{
+        max-width: 90vw;
+        width: 258px;
+    }
+    .form-set label{
+        width: 258px;
+        max-width: 80vw;
+        padding-bottom: 10px;
+    }
+    .form-set input{
+        width: 250px;
+        max-width: 80vw;
+    }
+    .form-set div span{
+        display: block;
+        width: 258px;
+    }
+}

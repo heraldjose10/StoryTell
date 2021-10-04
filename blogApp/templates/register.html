@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{{ url_for('static', filename = '/css/register_form.css') }}">
+{% endblock styles %}
+
+{% block main %}
+    <main>
+        <form method="POST">
+            {{ form.hidden_tag() }}
+            <fieldset>
+                <legend>Author Signup</legend>
+                <div class="form-set">
+                    {{ form.name.label }}
+                    {% if form.name.errors %}
+                        {{ form.name(class='error-input-box') }}
+                        <div>
+                            {% for error in form.name.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.name(class = "") }}
+                    {% endif %}
+                </div>
+                <div class="form-set">
+                    {{ form.email.label }}
+                    {% if form.email.errors %}
+                        {{ form.email(class = "error-input-box") }}
+                        <div>
+                            {% for error in form.email.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.email(class = "") }}
+                    {% endif %}
+                </div>
+                <div class="form-set">
+                    {{ form.password.label }}
+                    {% if form.password.errors %}
+                        {{ form.password(class = "error-input-box") }}
+                        <div>
+                            {% for error in form.password.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.password(class = "") }}
+                    {% endif %}
+                </div>
+                <div class="form-set">
+                    {{ form.confirm_password.label }}
+                    {% if form.confirm_password.errors %}
+                        {{ form.confirm_password(class = "error-input-box") }}
+                        <div>
+                            {% for error in form.confirm_password.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.confirm_password(class = "") }}
+                    {% endif %}
+                </div>
+                {{ form.submit(class = 'register-button') }}
+            </fieldset>
+        </form>
+    </main>
+{% endblock main %}

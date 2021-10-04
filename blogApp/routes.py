@@ -1,6 +1,6 @@
 from flask import render_template, url_for, redirect, request
-from blogApp import app, bcrypt
-from blogApp.forms import AuthorLogin
+from blogApp import app, bcrypt, db
+from blogApp.forms import AuthorLogin, RegisterForm
 from blogApp.models import Authors, Blogs, Tags
 from flask_login import login_user, logout_user, login_required, current_user
 
@@ -21,7 +21,7 @@ def author():
             login_user(user, remember = form.remember.data)
             next_page = request.args.get('next')
             return redirect(next_page) if next_page else redirect(url_for('index'))
-    return render_template('login.html', form = form)
+    return render_template('login.html', title = 'Login', form = form)
 
 @app.route('/blog/<blogid>')
 def blogpage(blogid):
@@ -45,3 +45,15 @@ def search(tagName):
     tag = Tags.query.filter_by(name = tagName).first()
     blogs = tag.blogs
     return render_template('tagSearchResults.html', searchResult = blogs, tag = tag)
+
+@app.route('/register', methods = ['GET','POST'])
+def signup():
+    if current_user.is_authenticated:
+        return redirect(url_for('index'))
+    form = RegisterForm()
+    if form.validate_on_submit():
+        author = Authors(name = form.name.data, email = form.email.data, password = bcrypt.generate_password_hash(form.password.data))
+        db.session.add(author)
+        db.session.commit()
+        return redirect('author')
+    return render_template('register.html', title = 'Register', form = form)
