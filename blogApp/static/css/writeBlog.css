@@ -1,0 +1,64 @@
+main{
+    width: 80vw;
+    max-width: 1440px;
+    margin: 5vh 0;
+}
+.blogInput{
+    max-width: 1024px;
+    width: 80vw;
+    display: flex;
+    flex-direction: column;
+}
+form legend{
+    font-family: Helvetica;
+    padding-bottom: 30px;
+    font-size: xx-large;
+}
+.form-set{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    font-size: larger;
+    font-family: Verdana;
+    padding-bottom: 10px;
+}
+.form-set label{
+    padding-bottom: 5px;
+}
+.form-set input{
+    width: 80vw - 8px;
+    max-width: 1016px;    
+}
+#summernotes-container{
+    width: 80vw;
+    max-width: 1024px;
+}
+.post-btn{
+    font-family: Verdana;
+    background-color: black;
+    color: white;
+    width: 60px;
+    height: 30px;
+    border: none;
+    font-size: large;
+    padding: 0px;
+}
+.post-btn:hover{
+    color: black;
+    background-color: white;
+    border: 1px solid black;
+}
+@media screen and (max-width: 480px){
+    main{
+        width: 90vw;
+    }
+    blogInput{
+        width: 90vw;
+    }
+    .form-set input{
+        width: 90vw - 8px;
+    }
+    #summernotes-container{
+        width: 90vw;
+    }
+}

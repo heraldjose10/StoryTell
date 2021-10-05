@@ -1,6 +1,6 @@
 from flask import render_template, url_for, redirect, request
 from blogApp import app, bcrypt, db
-from blogApp.forms import AuthorLogin, RegisterForm
+from blogApp.forms import AuthorLogin, RegisterForm, BlogForm
 from blogApp.models import Authors, Blogs, Tags
 from flask_login import login_user, logout_user, login_required, current_user
 
@@ -38,7 +38,8 @@ def logout():
 @app.route('/create_blog')
 @login_required
 def write():
-    return current_user.name
+    form = BlogForm()
+    return render_template('writeBlog.html', title = 'Post', form = form)
 
 @app.route('/tag/<tagName>')
 def search(tagName):
