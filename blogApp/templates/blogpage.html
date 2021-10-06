@@ -17,7 +17,7 @@
                 <p>On {{ blog._created }}</p>
             </div>
             <div class="content">
-                {{ blog.content }}
+                {{ blog.content|safe }}
             </div>
             <div class="tags">
                 <ul>

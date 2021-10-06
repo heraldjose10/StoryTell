@@ -1,6 +1,7 @@
 footer{
     display: flex;
     width: 100vw;
+    max-width: 100vw;
     text-align: center;
     height: 5vh;
     background-color: black;
@@ -23,6 +24,7 @@ footer ul{
     list-style: none;
     display: flex;
     justify-content: center;
+    max-width: 100vw;
 }
 footer ul li{
     margin-right: 3vw;

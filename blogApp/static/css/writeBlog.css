@@ -48,6 +48,39 @@ form legend{
     background-color: white;
     border: 1px solid black;
 }
+.tags-container{
+    display: flex;
+    width: 80vw;
+    max-width: 1024px;
+    flex-wrap: wrap;
+    border: 1px black solid;
+}
+.tags-container ul{
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+}
+.tags-container ul li{
+    font-size: small;
+    background-color: rgb(27, 26, 26);
+    color: wheat;
+    margin: 3px 3px;
+    border-radius: 10px;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+.tags-container input{
+    border: none;
+    width: inherit;
+    max-width: 296px;
+    margin: 3px 3px;
+}
+.tags-container input:focus{
+    outline: none;
+}
+.hidden-input{
+    display: none;
+}
 @media screen and (max-width: 480px){
     main{
         width: 90vw;

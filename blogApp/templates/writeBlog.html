@@ -13,6 +13,7 @@
 {% block main %}
     <main>
         <form action="" method="post" class="blogInput">
+            {{ form.hidden_tag() }}
             <legend>Create new post</legend>
             <fieldset>
                 <div class="form-set">
@@ -27,10 +28,18 @@
                 </div>
                 <div class="form-set">
                     {{ form.tags.label() }}
-                    {{ form.tags(id="taginput") }}
+                    <div class="tags-container">
+                        <ul></ul>
+                        <input type="text" name="tag" id = "js-target">
+                    </div>
+                    {{ form.tags(class="hidden-input") }}
                 </div>
             </fieldset>
             {{ form.post(class = 'post-btn') }}
         </form>
     </main>
 {% endblock main %}
+
+{% block script %}
+    <script src="{{ url_for('static', filename = '/javascript/tags.js') }}" defer></script>
+{% endblock script %}
