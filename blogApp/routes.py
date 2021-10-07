@@ -3,6 +3,7 @@ from blogApp import app, bcrypt, db
 from blogApp.forms import AuthorLogin, RegisterForm, BlogForm
 from blogApp.models import Authors, Blogs, Tags
 from flask_login import login_user, logout_user, login_required, current_user
+import bleach
 
 
 @app.route('/')
@@ -44,7 +45,18 @@ def write():
     form = BlogForm()
     if form.validate_on_submit():
         tags = form.tags.data.split(' ')[:-1]
-        blog = Blogs(title = form.title.data, content = form.editordata.data, author = current_user)
+        content = form.editordata.data
+        allowed_tags = ['span', 'p', 'img', 'a', 'br', 'b', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'u', 'blockquote', 'font', 'iframe', 'pre', 'ol', 'li', 'ul', 'div', 'table', 'tbody', 'td', 'tr']
+        attrs = {
+            '*' : ['style', 'color', 'class'],
+            'div' : ['bis_skin_checked'],
+            'a' : ['href', 'target'],
+            'img' : ['src', 'class'],
+            'iframe' : ['frameborder', 'src', 'width', 'height']
+        }
+        styles = ['background-color','text-align', 'margin-left', 'width', 'float']
+        clean_content = bleach.clean(content, tags= allowed_tags, attributes= attrs, styles=styles)
+        blog = Blogs(title = form.title.data, content = clean_content, author = current_user)
         db.session.add(blog)
         for tag in tags:
             t = Tags.query.filter_by(name = tag).first()

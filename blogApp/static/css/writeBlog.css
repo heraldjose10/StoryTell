@@ -81,6 +81,13 @@ form legend{
 .hidden-input{
     display: none;
 }
+/* remove summernote upload file */
+.note-group-select-from-files {
+    display: none;
+}
+.note-editable{
+    background: white;
+}
 @media screen and (max-width: 480px){
     main{
         width: 90vw;
@@ -92,6 +99,9 @@ form legend{
         width: 90vw - 8px;
     }
     #summernotes-container{
+        width: 90vw;
+    }
+    .tags-container{
         width: 90vw;
     }
 }

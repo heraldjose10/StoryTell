@@ -55,6 +55,7 @@ main{
 }
 .tags{
     display: flex;
+    flex-wrap: wrap;
     width: 400px;
 }
 .card a{

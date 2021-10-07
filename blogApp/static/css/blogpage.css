@@ -7,7 +7,7 @@ main{
     max-width: 1440px;
     width: 80vw;
 }
-main h1{
+.blog-heading{
     font-size: xx-large;
     font-family: 'Fjalla One', sans-serif;
     letter-spacing: .05em;
@@ -40,11 +40,12 @@ main h1{
 .tags ul{
     display: flex;
     list-style-type: none;
+    flex-wrap: wrap;
     font-family: 'Open Sans', sans-serif;
     font-size: small;
 }
 .tags ul li{
-    margin-right: 5px;
+    margin: 3px 5px 3px 0px;
     background-color: rgb(233, 219, 219);
     border-radius: 10px;
     padding: .6ex 1.4ex;

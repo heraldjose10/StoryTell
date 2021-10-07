@@ -47,6 +47,5 @@ ul = document.getElementsByTagName('ul')[1]
 
 input.addEventListener("keyup", addTag);
 
-post_btn.addEventListener('onclick', inputTags);
 
 

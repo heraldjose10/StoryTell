@@ -29,6 +29,7 @@ main h1{
     display: flex;
     flex-direction: column;
     margin-right: 50px;
+    max-width: 400px;
 }
 .card a{
     text-decoration: none;
@@ -43,6 +44,7 @@ main h1{
 .tags{
     display: flex;
     list-style: none;
+    flex-wrap: wrap;
 }
 .tags li{
     margin-right: 10px;
