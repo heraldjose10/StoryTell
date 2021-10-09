@@ -20,13 +20,13 @@ form legend{
     flex-wrap: wrap;
     font-size: larger;
     font-family: Verdana;
-    padding-bottom: 10px;
+    padding-bottom: 30px;
 }
 .form-set label{
     padding-bottom: 5px;
 }
 .form-set input{
-    width: 80vw - 8px;
+    width: calc(80vw - 8px);
     max-width: 1016px;    
 }
 #summernotes-container{
@@ -48,10 +48,25 @@ form legend{
     background-color: white;
     border: 1px solid black;
 }
-.tags-container{
+.bottom-container{
     display: flex;
     width: 80vw;
-    max-width: 1024px;
+    flex-wrap: wrap;
+    align-items: flex-start;
+}
+.thumbnail{
+    width: 30vw;
+}
+.thumbnail input, label{
+    width: fit-content;
+}
+.bottom-container .form-set:first-child{
+    padding-right: 40px;
+}
+.tags-container{
+    display: flex;
+    width: 40vw;
+    max-width: 516px;
     flex-wrap: wrap;
     border: 1px black solid;
 }
@@ -96,12 +111,21 @@ form legend{
         width: 90vw;
     }
     .form-set input{
-        width: 90vw - 8px;
+        width: calc(90vw - 8px);
     }
     #summernotes-container{
         width: 90vw;
     }
     .tags-container{
+        width: 90vw;
+    }
+    .bottom-container{
+        width: 90vw;
+    }
+    .bottom-container .form-set:first-child{
+        padding-right: 0;
+    }
+    .thumbnail{
         width: 90vw;
     }
 }

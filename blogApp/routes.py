@@ -1,14 +1,17 @@
+import secrets
+import bleach
+import os
+import base64
 from flask import render_template, url_for, redirect, request
 from blogApp import app, bcrypt, db
 from blogApp.forms import AuthorLogin, RegisterForm, BlogForm
 from blogApp.models import Authors, Blogs, Tags
 from flask_login import login_user, logout_user, login_required, current_user
-import bleach
 
 
 @app.route('/')
 def index():
-    blogs = Blogs.query.limit(9).all()
+    blogs = Blogs.query.order_by(Blogs._created.desc()).limit(6).all()
     return render_template('home.html', title='Home', blogs=blogs)
 
 
@@ -39,6 +42,17 @@ def logout():
     return redirect(url_for('index'))
 
 
+def save_file(file, path):
+    file = file.partition(",")[2]
+    random_hex = secrets.token_hex(8)
+    updated_file_name = random_hex+'.jpeg'
+    file_path = os.path.join(app.root_path, path, updated_file_name)
+
+    with open(file_path, 'wb') as fh:
+        fh.write(base64.decodebytes(bytes(file, 'utf-8')))
+
+    return updated_file_name
+
 @app.route('/create_blog', methods=['Get', 'POST'])
 @login_required
 def write():
@@ -58,6 +72,10 @@ def write():
         clean_content = bleach.clean(content, tags= allowed_tags, attributes= attrs, styles=styles)
         blog = Blogs(title = form.title.data, content = clean_content, author = current_user)
         db.session.add(blog)
+        if form.thumbnail_data.data:
+            img_data = form.thumbnail_data.data
+            thumbnail_name = save_file(img_data, 'static/assets/thumbnails/')
+            blog.thumbnail = thumbnail_name
         for tag in tags:
             t = Tags.query.filter_by(name = tag).first()
             if t==None:
@@ -65,6 +83,7 @@ def write():
                 db.session.add(t)
             t.blogs.append(blog)
         db.session.commit()
+        return redirect(url_for('index'))
     return render_template('writeBlog.html', title='Post', form=form)
 
 
