@@ -40,10 +40,17 @@ function addTag(e) {
 
 
 const input = document.getElementById('js-target');
-const real_input = document.getElementsByClassName('hidden-input')[0]
+const real_input = document.getElementsByClassName('hidden-input')[0];
 const post_btn = document.getElementById('post');
-ul = document.getElementsByTagName('ul')[1]
+const ul = document.getElementsByTagName('ul')[1];
 
+function addToList(){
+    ul.querySelectorAll("li").forEach(tag=>{
+        tags.push(tag.innerText);
+    })
+}
+
+window.onload = addToList;
 
 input.addEventListener("keyup", addTag);
 

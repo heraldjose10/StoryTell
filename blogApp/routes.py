@@ -2,7 +2,7 @@ import secrets
 import bleach
 import os
 import base64
-from flask import render_template, url_for, redirect, request
+from flask import render_template, url_for, redirect, request, abort
 from blogApp import app, bcrypt, db
 from blogApp.forms import AuthorLogin, RegisterForm, BlogForm
 from blogApp.models import Authors, Blogs, Tags
@@ -53,6 +53,7 @@ def save_file(file, path):
 
     return updated_file_name
 
+
 @app.route('/create_blog', methods=['Get', 'POST'])
 @login_required
 def write():
@@ -60,31 +61,66 @@ def write():
     if form.validate_on_submit():
         tags = form.tags.data.split(' ')[:-1]
         content = form.editordata.data
-        allowed_tags = ['span', 'p', 'img', 'a', 'br', 'b', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'u', 'blockquote', 'font', 'iframe', 'pre', 'ol', 'li', 'ul', 'div', 'table', 'tbody', 'td', 'tr']
+        allowed_tags = ['span', 'p', 'img', 'a', 'br', 'b', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'u',
+                        'blockquote', 'font', 'iframe', 'pre', 'ol', 'li', 'ul', 'div', 'table', 'tbody', 'td', 'tr']
         attrs = {
-            '*' : ['style', 'color', 'class'],
-            'div' : ['bis_skin_checked'],
-            'a' : ['href', 'target'],
-            'img' : ['src', 'class'],
-            'iframe' : ['frameborder', 'src', 'width', 'height']
+            '*': ['style', 'color', 'class'],
+            'div': ['bis_skin_checked'],
+            'a': ['href', 'target'],
+            'img': ['src', 'class'],
+            'iframe': ['frameborder', 'src', 'width', 'height']
         }
-        styles = ['background-color','text-align', 'margin-left', 'width', 'float']
-        clean_content = bleach.clean(content, tags= allowed_tags, attributes= attrs, styles=styles)
-        blog = Blogs(title = form.title.data, content = clean_content, author = current_user)
+        styles = ['background-color', 'text-align',
+                  'margin-left', 'width', 'float']
+        clean_content = bleach.clean(
+            content, tags=allowed_tags, attributes=attrs, styles=styles)
+        blog = Blogs(title=form.title.data,
+                     content=clean_content, author=current_user)
         db.session.add(blog)
         if form.thumbnail_data.data:
             img_data = form.thumbnail_data.data
             thumbnail_name = save_file(img_data, 'static/assets/thumbnails/')
             blog.thumbnail = thumbnail_name
         for tag in tags:
-            t = Tags.query.filter_by(name = tag).first()
-            if t==None:
-                t = Tags(name = tag)
+            t = Tags.query.filter_by(name=tag).first()
+            if t == None:
+                t = Tags(name=tag)
                 db.session.add(t)
             t.blogs.append(blog)
         db.session.commit()
         return redirect(url_for('index'))
-    return render_template('writeBlog.html', title='Post', form=form)
+    return render_template('writeBlog.html', legend="Create new post", title='Post', form=form)
+
+
+@app.route('/blog/<int:blogid>/update', methods=['GET', 'POST'])
+@login_required
+def update_post(blogid):
+    blog = Blogs.query.get_or_404(blogid)
+    if blog.author != current_user:
+        abort(403)
+    form = BlogForm()
+    if form.validate_on_submit():
+        to_remove = blog.tags
+        while to_remove:
+            blog.tags.remove(to_remove[0])
+            to_remove = blog.tags
+        db.session.commit()
+        tags = form.tags.data.split(' ')[:-1]
+        for tag in tags:
+            t = Tags.query.filter_by(name=tag).first()
+            if t == None:
+                t = Tags(name=tag)
+                db.session.add(t)
+            t.blogs.append(blog)
+        blog.title = form.title.data
+        blog.content = form.editordata.data
+        db.session.commit()
+        return redirect(url_for('blogpage', blogid=blogid))
+    elif request.method == 'GET':
+        form.title.data = blog.title
+        form.editordata.data = blog.content
+        tags = blog.tags
+    return render_template('writeBlog.html', legend='Update post', title='update', form=form, tags=tags)
 
 
 @app.route('/tag/<tagName>')

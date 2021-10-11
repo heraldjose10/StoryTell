@@ -6,9 +6,9 @@ from flask_login import UserMixin
 
 blogtags = db.Table('blogtags',
                     db.Column('blogid', db.Integer, db.ForeignKey(
-                        'blogs.id', primary_key=True)),
+                        'blogs.id'), primary_key=True),
                     db.Column('tagid', db.Integer, db.ForeignKey(
-                        'tags.id', primary_key=True))
+                        'tags.id'), primary_key=True)
                     )
 
 
@@ -20,6 +20,7 @@ class Authors(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(50), nullable=False)
     email = db.Column(db.String(50), unique=True, nullable=False)
+    about = db.Column(db.Text)
     image_file = db.Column(db.String(20), nullable = False, default = 'double1.jpg')
     password = db.Column(db.String(60), nullable=False)
     blogs = db.relationship('Blogs', backref='author', lazy=True)
@@ -36,7 +37,7 @@ class Blogs(db.Model):
     thumbnail = db.Column(db.String(20), nullable = False, default = 'thumb.jpg')
     authorid = db.Column(db.Integer, db.ForeignKey(
         'authors.id'), nullable=False)
-    tags = db.relationship('Tags', secondary=blogtags,
+    tags = db.relationship('Tags', secondary=blogtags, 
                            backref=db.backref('blogs', lazy='dynamic'))
 
     def __repr__(self):

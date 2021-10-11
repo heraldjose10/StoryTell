@@ -14,7 +14,7 @@
     <main>
         <form action="" method="post" class="blogInput" enctype="multipart/form-data">
             {{ form.hidden_tag() }}
-            <legend>Create new post</legend>
+            <legend>{{ legend }}</legend>
             <fieldset>
                 <div class="form-set">
                     {{ form.title.label() }}
@@ -30,7 +30,11 @@
                     <div class="form-set">
                         {{ form.tags.label() }}
                         <div class="tags-container">
-                            <ul></ul>
+                            <ul>
+                                {% for tag in tags %}
+                                    <li onclick="removeTag(this, '{{ tag.name }}')">{{ tag.name }}</li>
+                                {% endfor %}
+                            </ul>
                             <input type="text" name="tag" id = "js-target">
                         </div>
                         {{ form.tags(class="hidden-input") }}
@@ -48,6 +52,6 @@
 {% endblock main %}
 
 {% block script %}
-    <script src="{{ url_for('static', filename = '/javascript/tags.js') }}" defer></script>
     <script src="{{ url_for('static', filename = '/javascript/resize.js') }}"></script>
+    <script src="{{ url_for('static', filename = '/javascript/tags.js') }}" defer></script>
 {% endblock script %}
