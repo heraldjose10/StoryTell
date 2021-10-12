@@ -123,6 +123,23 @@ def update_post(blogid):
     return render_template('writeBlog.html', legend='Update post', title='update', form=form, tags=tags)
 
 
+@app.route('/blog/<int:blogid>/delete', methods = ['GET'])
+@login_required
+def delete_post(blogid):
+    post = Blogs.query.get_or_404(blogid)
+    if post.author == current_user:
+        try:
+            file_path = os.path.join(app.root_path, 'static/assets/thumbnails/', post.thumbnail)
+            os.remove(file_path)
+        except FileNotFoundError:
+            pass
+        db.session.delete(post)
+        db.session.commit()
+        return redirect(url_for('index'))
+    else:
+        abort(403)
+
+
 @app.route('/tag/<tagName>')
 def search(tagName):
     tag = Tags.query.filter_by(name=tagName).first()

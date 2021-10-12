@@ -56,3 +56,36 @@ main{
 .tags ul li a:hover{
     color: red;
 }
+.del-update-buttons{
+    display: flex;
+}
+.del-update-buttons div{
+    margin: 10px 10px 5px 0;
+    background-color: black;
+    color: white;
+    width: 100px;
+    height: 30px;
+    font-size: large;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.del-update-buttons div:hover{
+    color: black;
+    background-color: white;
+    border: 1px solid black;
+}
+.del-update-buttons a{
+    color: inherit;
+    text-decoration: none;
+    font-family: Verdana;   
+}
+@media screen and (max-width: 768px){
+    .del-update-buttons{
+        flex-direction: column;
+    }
+    main{
+        justify-content: space-around;
+        flex-direction: column;
+    }
+}
