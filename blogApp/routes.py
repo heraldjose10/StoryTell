@@ -159,3 +159,9 @@ def signup():
         db.session.commit()
         return redirect('author')
     return render_template('register.html', title='Register', form=form)
+
+
+@app.route('/profile/<intauthorid>/', methods = ['GET'])
+def profile(authorid):
+    author = Authors.query.get_or_404(authorid)
+    return render_template('author.html', author = author, title = 'Profile-'+author.name)
