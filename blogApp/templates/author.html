@@ -1,1 +1,22 @@
-{{ extends 'base.html'}}
+{% extends 'base.html' %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/author_page.css') }}">
+{% endblock styles %}
+
+{% block main %}
+    <main>
+        <div class="profile-card">
+            <div class="profile-headers">
+                <div class="profile-pic">
+                    <img src="{{ url_for('static', filename = 'assets/profile_pics/{}'.format(author.image_file)) }}" alt="profile-picture">
+                </div>
+                <div class="header-set-1">
+                    <h1>{{ author.name }}</h1>
+                <h2>{{ author.email }}</h2>
+                </div>
+            </div>
+            <p>{{ author.about }}</p>
+        </div>
+    </main>
+{% endblock main %}

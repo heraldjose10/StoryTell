@@ -1,0 +1,51 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fjalla+One');main{
+    width: 80vw;
+    height: 70vh;
+    max-width: 1440px;
+    display: flex;
+}
+.profile-card{
+    display: flex;
+    flex-direction: column;
+}
+.profile-headers{
+    display: flex;
+    align-items: flex-end;
+}
+.profile-pic{
+    height: 100px;
+    width: 100px;
+    margin-right: 30px;
+}
+.profile-card img{
+    height: 100px;
+    width: 100px;
+    /* border-radius: 50%; */
+    object-fit: cover;
+}
+.header-set-1 h1{
+    margin-top: 20px;
+    font-family: 'Fjalla One';
+    letter-spacing: .08em;
+    font-size: xx-large;
+}
+.profile-card p{
+    margin-left: 130px;
+    margin-top: 30px;
+    font-size: larger;
+    font-family: 'Roboto Slab', serif;
+    font-weight: 100;
+}
+@media screen and (max-width: 480px){
+    .profile-headers{
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .profile-card p{
+        margin-left: 0;
+    }
+    main{
+        margin-top: 5vh;
+    }
+}

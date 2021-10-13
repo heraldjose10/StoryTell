@@ -85,7 +85,7 @@ main{
         flex-direction: column;
     }
     main{
-        justify-content: space-around;
+        /* justify-content: space-around; */
         flex-direction: column;
     }
 }

@@ -17,7 +17,7 @@
                         </div>
                     </a>
                     <div class="author-name">
-                        <p>By <a href="">{{ blog.author.name }}</a></p>
+                        <p>By <a href="{{ url_for('profile', authorid = blog.author.id) }}">{{ blog.author.name }}</a></p>
                     </div>
                     <ul class="tags">
                         {% for tag in blog.tags %}
