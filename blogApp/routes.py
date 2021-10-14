@@ -4,7 +4,7 @@ import os
 import base64
 from flask import render_template, url_for, redirect, request, abort
 from blogApp import app, bcrypt, db
-from blogApp.forms import AuthorLogin, RegisterForm, BlogForm
+from blogApp.forms import AuthorLogin, RegisterForm, BlogForm, ProfileForm
 from blogApp.models import Authors, Blogs, Tags
 from flask_login import login_user, logout_user, login_required, current_user
 
@@ -165,3 +165,15 @@ def signup():
 def profile(authorid):
     author = Authors.query.get_or_404(authorid)
     return render_template('author.html', author = author, title = 'Profile-'+author.name)
+
+
+@app.route('/profile/<int:authorid>/edit', methods = ['GET', 'POST'])
+@login_required
+def edit_profile(authorid):
+    author = Authors.query.get_or_404(authorid)
+    if author == current_user:
+        form = ProfileForm()
+        form.about_me.data = author.about
+        return render_template('edit_profile.html', title = 'Edit Profile', form = form)
+    else:
+        abort(403)

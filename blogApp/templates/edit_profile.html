@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/edit_profile.css') }}">
+
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+
+    <script src="{{ url_for('static', filename = '/javascript/textarea.js') }}"></script>
+{% endblock styles %}
+
+{% block main %}
+    <main>
+        <form action="" method="POST">
+            {{ form.hidden_tag() }}
+            <legend>
+                Edit profile
+            </legend>
+            <fieldset>
+                <div class="form-set">
+                    {{ form.about_me.label() }}
+                    <div id="summernotes-container">
+                        {{ form.about_me(id="summernote") }}
+                    </div>
+                </div>
+                {{ form.profile_pic_encoded(class = "hide_field") }}
+                <div class="form-set upload">
+                    <label for="profile-pic-upload">upload profile pic</label>
+                    <input type="file" name="profile-pic-upload">
+                </div>
+            </fieldset>
+            {{ form.post(class = "post-btn") }}
+        </form>
+    </main>
+{% endblock main %}

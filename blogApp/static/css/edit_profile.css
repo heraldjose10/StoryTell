@@ -1,0 +1,68 @@
+.hide_field{
+    display: none;
+}
+main{
+    width: 80vw;
+    max-width: 1440px;
+    min-height: 70vh;
+    margin: 5vh 0;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+form{
+    min-height: 300px;
+}
+form legend {
+    font-family: Helvetica;
+    padding-bottom: 30px;
+    font-size: xx-large;
+}
+form fieldset{
+    display: flex;
+    flex-direction: column;
+}
+#summernotes-container{
+    margin: 10px 0 0 0;
+    width: 80vw;
+    max-width: 1024px;
+}
+.form-set label{
+    font-size: larger;
+    font-family: Verdana;
+    margin-bottom: 10px;
+}
+.form-set{
+    margin-bottom: 30px;
+}
+.upload{
+    display: flex;
+    flex-direction: column;
+}
+.post-btn{
+    font-family: Verdana;
+    background-color: black;
+    color: white;
+    width: 80px;
+    height: 30px;
+    border: none;
+    font-size: large;
+    padding: 0px;
+}
+.post-btn:hover{
+    color: black;
+    background-color: white;
+    border: 1px solid black;
+}
+/* fix fullscreen bug */
+.note-editable{
+    background: white;
+}
+@media screen and (max-width: 480px){
+    main{
+        width: 90vw;
+    }
+    #summernotes-container{
+        width: 90vw;
+    }
+}

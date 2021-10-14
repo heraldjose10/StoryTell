@@ -1,7 +1,9 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField, BooleanField, TextAreaField
 from flask_wtf.file import FileField, FileAllowed
+from wtforms import validators
 from wtforms.validators import DataRequired, Email, EqualTo
+from wtforms.widgets.core import TextArea
 
 class AuthorLogin(FlaskForm):
     email = StringField('email', validators= [DataRequired(), Email()])
@@ -23,3 +25,8 @@ class BlogForm(FlaskForm):
     tags = StringField('tags')
     thumbnail_data = StringField('thumbnail')
     post = SubmitField('post')
+
+class ProfileForm(FlaskForm):
+    about_me = TextAreaField('about me', validators = [DataRequired()])
+    profile_pic_encoded = StringField('profile pic')
+    post = SubmitField('update')
