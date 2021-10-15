@@ -22,7 +22,7 @@
                         <a href = "{{ url_for('edit_profile', authorid = author.id) }}" class="edit-about">edit</a>
                     </div>
                     {% if author.about %}
-                        <p>{{ author.about }}</p>
+                        <p>{{ author.about|safe }}</p>
                     {% else %}
                         <p style="color: grey;">Click edit button to add profile picture and info about you</p>
                     {% endif %}

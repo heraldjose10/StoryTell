@@ -54,6 +54,23 @@ def save_file(file, path):
     return updated_file_name
 
 
+def bleach_tags(to_bleach):
+    allowed_tags = ['span', 'p', 'img', 'a', 'br', 'b', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'u',
+                        'blockquote', 'font', 'iframe', 'pre', 'ol', 'li', 'ul', 'div', 'table', 'tbody', 'td', 'tr']
+    attrs = {
+        '*': ['style', 'color', 'class'],
+        'div': ['bis_skin_checked'],
+        'a': ['href', 'target'],
+        'img': ['src', 'class'],
+        'iframe': ['frameborder', 'src', 'width', 'height']
+    }
+    styles = ['background-color', 'text-align',
+                'margin-left', 'width', 'float']
+    clean_content = bleach.clean(
+        to_bleach, tags=allowed_tags, attributes=attrs, styles=styles)
+    return(clean_content)
+
+
 @app.route('/create_blog', methods=['Get', 'POST'])
 @login_required
 def write():
@@ -61,21 +78,9 @@ def write():
     if form.validate_on_submit():
         tags = form.tags.data.split(' ')[:-1]
         content = form.editordata.data
-        allowed_tags = ['span', 'p', 'img', 'a', 'br', 'b', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'u',
-                        'blockquote', 'font', 'iframe', 'pre', 'ol', 'li', 'ul', 'div', 'table', 'tbody', 'td', 'tr']
-        attrs = {
-            '*': ['style', 'color', 'class'],
-            'div': ['bis_skin_checked'],
-            'a': ['href', 'target'],
-            'img': ['src', 'class'],
-            'iframe': ['frameborder', 'src', 'width', 'height']
-        }
-        styles = ['background-color', 'text-align',
-                  'margin-left', 'width', 'float']
-        clean_content = bleach.clean(
-            content, tags=allowed_tags, attributes=attrs, styles=styles)
+        cleaned = bleach_tags(content)
         blog = Blogs(title=form.title.data,
-                     content=clean_content, author=current_user)
+                     content=cleaned, author=current_user)
         db.session.add(blog)
         if form.thumbnail_data.data:
             img_data = form.thumbnail_data.data
@@ -173,7 +178,14 @@ def edit_profile(authorid):
     author = Authors.query.get_or_404(authorid)
     if author == current_user:
         form = ProfileForm()
-        form.about_me.data = author.about
-        return render_template('edit_profile.html', title = 'Edit Profile', form = form)
+        if form.validate_on_submit():
+            cleaned_data = bleach_tags(form.about_me.data)
+            author.about = cleaned_data
+            print(cleaned_data)
+            db.session.commit()
+            return redirect(url_for('profile', authorid = authorid))
+        elif request.method == 'GET':
+            form.about_me.data = author.about
+            return render_template('edit_profile.html', title = 'Edit Profile', form = form)
     else:
         abort(403)
