@@ -181,7 +181,9 @@ def edit_profile(authorid):
         if form.validate_on_submit():
             cleaned_data = bleach_tags(form.about_me.data)
             author.about = cleaned_data
-            print(cleaned_data)
+            if form.profile_pic_encoded.data:
+                profile_pic_name = save_file(form.profile_pic_encoded.data, 'static/assets/profile_pics')
+                author.image_file = profile_pic_name
             db.session.commit()
             return redirect(url_for('profile', authorid = authorid))
         elif request.method == 'GET':

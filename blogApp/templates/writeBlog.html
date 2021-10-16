@@ -42,8 +42,8 @@
                     </div>
                     <div class="form-set thumbnail">
                         <label for="thumbnail">upload thumbnail</label>
-                        <input type="file" name="thumbnail" id="choose-file">
-                        {{ form.thumbnail_data(class = "hidden-input", id = "thumbnail_data") }}
+                        <input type="file" name="thumbnail" id="choose-file" onchange="resize_img(400)">
+                        {{ form.thumbnail_data(class = "hidden-input", id = "img_data") }}
                     </div>
                 </div>
             </fieldset>

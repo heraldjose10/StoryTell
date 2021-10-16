@@ -24,13 +24,17 @@
                         {{ form.about_me(id="summernote") }}
                     </div>
                 </div>
-                {{ form.profile_pic_encoded(class = "hide_field") }}
+                {{ form.profile_pic_encoded(class = "hide_field", id = "img_data") }}
                 <div class="form-set upload">
                     <label for="profile-pic-upload">upload profile pic</label>
-                    <input type="file" name="profile-pic-upload">
+                    <input type="file" name="profile-pic-upload" id="choose-file" onchange="resize_img(200)">
                 </div>
             </fieldset>
             {{ form.post(class = "post-btn") }}
         </form>
     </main>
 {% endblock main %}
+
+{% block script %}
+    <script src="{{ url_for('static', filename = 'javascript/resize.js') }}"></script>
+{% endblock script %}

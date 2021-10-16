@@ -18,7 +18,7 @@ main{
 .post img{
     height: 225px;
     width: 400px;
-    object-fit: contain;
+    object-fit: cover;
     background-color: rgb(42, 42, 70);
 }
 .post{
