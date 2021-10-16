@@ -1,0 +1,106 @@
+@import url('https://fonts.googleapis.com/css2?family=Scheherazade+New&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap'); 
+  @media -sass-debug-info{filename{font-family:file\:\/\/c\:\\Users\\herald\ jose\\Desktop\\flask_project\\blog\\blogApp\\static\\sass\/footer\.sass}line{font-family:\000033}}
+  html {
+    height: 100%; }
+
+    @media -sass-debug-info{filename{font-family:file\:\/\/c\:\\Users\\herald\ jose\\Desktop\\flask_project\\blog\\blogApp\\static\\sass\/footer\.sass}line{font-family:\000036}}
+    body {
+      display: flex;
+      flex-direction: column;
+      min-height: 100%;
+      justify-content: space-between;
+      align-items: center;
+      overflow-x: hidden; }
+
+      @media -sass-debug-info{filename{font-family:file\:\/\/c\:\\Users\\herald\ jose\\Desktop\\flask_project\\blog\\blogApp\\static\\sass\/footer\.sass}line{font-family:\0000314}}
+      footer {
+        padding: 40px 0;
+        background-color: black;
+        display: flex;
+        max-width: 100vw;
+        width: 100vw;
+        justify-content: center;
+        color: white; }
+        @media -sass-debug-info{filename{font-family:file\:\/\/c\:\\Users\\herald\ jose\\Desktop\\flask_project\\blog\\blogApp\\static\\sass\/footer\.sass}line{font-family:\0000322}}
+        footer h1 {
+          font-family: 'Scheherazade New', serif;
+          font-size: 50px;
+          padding: 20px 0; }
+          @media -sass-debug-info{filename{font-family:file\:\/\/c\:\\Users\\herald\ jose\\Desktop\\flask_project\\blog\\blogApp\\static\\sass\/footer\.sass}line{font-family:\0000327}}
+          footer p {
+            font-family: 'Lato', sans-serif; }
+            @media -sass-debug-info{filename{font-family:file\:\/\/c\:\\Users\\herald\ jose\\Desktop\\flask_project\\blog\\blogApp\\static\\sass\/footer\.sass}line{font-family:\0000331}}
+            footer .footer-container {
+              width: 80vw;
+              max-width: 1440px;
+              display: flex;
+              flex-wrap: wrap;
+              justify-content: space-between; }
+              @media -sass-debug-info{filename{font-family:file\:\/\/c\:\\Users\\herald\ jose\\Desktop\\flask_project\\blog\\blogApp\\static\\sass\/footer\.sass}line{font-family:\0000337}}
+              footer .footer-container .about-us {
+                width: 20vw;
+                max-width: 288px; }
+                @media -sass-debug-info{filename{font-family:file\:\/\/c\:\\Users\\herald\ jose\\Desktop\\flask_project\\blog\\blogApp\\static\\sass\/footer\.sass}line{font-family:\0000342}}
+                footer .footer-container .contact-us {
+                  max-width: 288px;
+                  width: 20vw; }
+                  @media -sass-debug-info{filename{font-family:file\:\/\/c\:\\Users\\herald\ jose\\Desktop\\flask_project\\blog\\blogApp\\static\\sass\/footer\.sass}line{font-family:\0000345}}
+                  footer .footer-container .contact-us address {
+                    font-family: 'Lato', sans-serif; }
+                    @media -sass-debug-info{filename{font-family:file\:\/\/c\:\\Users\\herald\ jose\\Desktop\\flask_project\\blog\\blogApp\\static\\sass\/footer\.sass}line{font-family:\0000349}}
+                    footer .footer-container .contact-us a {
+                      color: white;
+                      text-decoration: none; }
+              @media -sass-debug-info{filename{font-family:file\:\/\/c\:\\Users\\herald\ jose\\Desktop\\flask_project\\blog\\blogApp\\static\\sass\/footer\.sass}line{font-family:\0000356}}
+              footer .footer-container .socials {
+                max-width: 288px;
+                width: 20vw;
+                display: flex;
+                justify-content: center;
+                align-items: center; }
+                @media -sass-debug-info{filename{font-family:file\:\/\/c\:\\Users\\herald\ jose\\Desktop\\flask_project\\blog\\blogApp\\static\\sass\/footer\.sass}line{font-family:\0000364}}
+                footer .footer-container ul {
+                  list-style: none;
+                  display: flex;
+                  flex-wrap: wrap;
+                  justify-content: flex-start; }
+                  @media -sass-debug-info{filename{font-family:file\:\/\/c\:\\Users\\herald\ jose\\Desktop\\flask_project\\blog\\blogApp\\static\\sass\/footer\.sass}line{font-family:\0000368}}
+                  footer .footer-container ul li {
+                    margin: 20px 0; }
+                    @media -sass-debug-info{filename{font-family:file\:\/\/c\:\\Users\\herald\ jose\\Desktop\\flask_project\\blog\\blogApp\\static\\sass\/footer\.sass}line{font-family:\0000371}}
+                    footer .footer-container ul a {
+                      color: white;
+                      margin: 20px 20px; }
+                      @media -sass-debug-info{filename{font-family:file\:\/\/c\:\\Users\\herald\ jose\\Desktop\\flask_project\\blog\\blogApp\\static\\sass\/footer\.sass}line{font-family:\0000374}}
+                      footer .footer-container ul a i {
+                        font-size: 40px; }
+
+  @media -sass-debug-info{filename{font-family:file\:\/\/c\:\\Users\\herald\ jose\\Desktop\\flask_project\\blog\\blogApp\\static\\sass\/footer\.sass}line{font-family:\0000387}}
+  @media (max-width: 550px) {
+    @media -sass-debug-info{filename{font-family:file\:\/\/c\:\\Users\\herald\ jose\\Desktop\\flask_project\\blog\\blogApp\\static\\sass\/footer\.sass}line{font-family:\0000387}}
+    footer .footer-container {
+      flex-direction: column;
+      text-align: center;   }
+      @media -sass-debug-info{filename{font-family:file\:\/\/c\:\\Users\\herald\ jose\\Desktop\\flask_project\\blog\\blogApp\\static\\sass\/footer\.sass}line{font-family:\0000390}}
+      footer .footer-container .about-us {
+        width: 80vw;
+        margin: 20px 0;
+        max-width: 80vw;   }
+        @media -sass-debug-info{filename{font-family:file\:\/\/c\:\\Users\\herald\ jose\\Desktop\\flask_project\\blog\\blogApp\\static\\sass\/footer\.sass}line{font-family:\0000396}}
+        footer .footer-container .contact-us {
+          width: 80vw;
+          margin: 20px 0;
+          max-width: 80vw;   }
+          @media -sass-debug-info{filename{font-family:file\:\/\/c\:\\Users\\herald\ jose\\Desktop\\flask_project\\blog\\blogApp\\static\\sass\/footer\.sass}line{font-family:\00003102}}
+          footer .footer-container .socials {
+            width: 80vw;
+            margin: 20px 0;
+            max-width: 80vw;   }
+            @media -sass-debug-info{filename{font-family:file\:\/\/c\:\\Users\\herald\ jose\\Desktop\\flask_project\\blog\\blogApp\\static\\sass\/footer\.sass}line{font-family:\00003106}}
+            footer .footer-container .socials ul a i {
+              font-size: 20px;   }
+              @media -sass-debug-info{filename{font-family:file\:\/\/c\:\\Users\\herald\ jose\\Desktop\\flask_project\\blog\\blogApp\\static\\sass\/footer\.sass}line{font-family:\00003110}}
+              footer .footer-container .socials ul a {
+                margin: 10px 10px;   }
+}

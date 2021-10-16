@@ -1,0 +1,120 @@
+@import url('https://fonts.googleapis.com/css2?family=Scheherazade+New&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+html {
+    height: 100%;
+}
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+    justify-content: space-between;
+    align-items: center;
+    overflow-x: hidden; 
+}
+footer {
+    padding: 40px 0;
+    background-color: black;
+    display: flex;
+    max-width: 100vw;
+    width: 100vw;
+    justify-content: center;
+    color: white;
+
+    h1 {
+        font-family: 'Scheherazade New', serif;
+        font-size: 50px;
+        padding: 20px 0;
+        }
+    p {
+        font-family: 'Lato', sans-serif;
+        }
+
+    .footer-container {
+        width: 80vw;
+        max-width:1440px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+
+        .about-us{
+            width: 20vw;
+            max-width: 288px;
+            }
+
+        .contact-us{
+            max-width: 288px;
+            width: 20vw;
+
+            address {
+                font-family: 'Lato', sans-serif;
+                }
+
+                a {
+                    color: white;
+                    text-decoration: none;
+                    }
+            }
+
+        .socials{
+            max-width: 288px;
+            width: 20vw;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            }
+
+            ul {
+                list-style: none;
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: flex-start;
+                li {
+                    margin: 20px 0;
+                    }
+                a {
+                    color: white;
+                    margin: 20px 20px;
+
+                    i {
+                        font-size: 40px;
+                        }
+                    }
+                }
+    }
+
+}
+$breakpoint-tablet: 550px;
+@media (max-width: $breakpoint-tablet) {
+    footer {
+        .footer-container {
+            flex-direction: column;
+            text-align: center;
+
+            .about-us {
+                width: 80vw;
+                margin: 20px 0;
+                max-width: 80vw;
+                }
+                
+            .contact-us {
+                width: 80vw;
+                margin: 20px 0;
+                max-width: 80vw;
+                }
+
+            .socials {
+                width: 80vw;
+                margin: 20px 0;
+                max-width: 80vw;
+
+                ul a i {
+                    font-size: 20px;
+                    }
+                    
+                ul a {
+                    margin: 10px 10px;
+                    }
+                }
+            }
+        }
+    }

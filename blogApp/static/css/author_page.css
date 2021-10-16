@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Fjalla+One');main{
+@import url('https://fonts.googleapis.com/css2?family=Fjalla+One');
+main{
+    padding-top: 100px;
     width: 80vw;
     height: 70vh;
     max-width: 1440px;

@@ -5,10 +5,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename = '/css/reset_css.css') }}">
+    <script src="https://kit.fontawesome.com/9f37a45bca.js" crossorigin="anonymous"></script>
     {% block styles %}
     {% endblock styles %}
     <link rel="stylesheet" href="{{ url_for('static', filename = '/css/header.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename = '/css/footer.css') }}">
+    <!-- <link rel="stylesheet" href="{{ url_for('static', filename = '/css/footer.css') }}"> -->
+    {% assets filters="pyscss", output="gen/footer.css", "sass/footer.sass" %}
+        <link rel="stylesheet" href="{{ ASSET_URL }}">
+    {% endassets %}
     {% if title %}
         <title>{{ title }}</title>
     {% else %}
@@ -61,20 +65,57 @@
 
     {% block footer %}
         <footer>
-            <ul>
-                <li>
-                    <a href="">FACEBOOK</a>
-                </li>
-                <li>
-                    <a href="">TWITTER</a>
-                </li>
-                <li>
-                    <a href="">INSTAGRAM</a>
-                </li>
-                <li>
-                    <a href="">YOUTUBE</a>
-                </li>
-            </ul>
+            <div class="footer-container">
+                <div class="about-us">
+                    <h1>
+                        About Us
+                    </h1>
+                    <p>
+                        Et architecto officiis eum et voluptas minus saepe quae. Unde rerum necessitatibus in. Consequatur maxime dolorum itaque dolores. Et architecto officiis eum et voluptas minus saepe quae. Unde rerum necessitatibus in.
+                    </p>
+                </div>
+                <div class="contact-us">
+                    <h1>
+                        Contact Us
+                    </h1>
+                    <address>
+                        <a href="mailto:heraldjose10@gmail.com">Email Us</a><br>
+                        Visit us at:<br>
+                        Example.com<br>
+                        Box 564, Disneyland<br>
+                        USA
+                    </address>
+                </div>
+                <div class="socials">
+                    <ul>
+                        <li>
+                            <a href="">
+                                <i class="fab fa-facebook"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="">
+                                <i class="fab fa-instagram-square"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="">
+                                <i class="fab fa-youtube"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="">
+                                <i class="fab fa-github"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </footer>
     {% endblock %}
 
