@@ -1,4 +1,4 @@
 __pycache__/
-models_test.py
 assets
 .webassets-cache
+blogApp/site.db
