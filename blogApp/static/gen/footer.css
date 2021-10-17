@@ -21,86 +21,98 @@
         max-width: 100vw;
         width: 100vw;
         justify-content: center;
-        color: white; }
-        @media -sass-debug-info{filename{font-family:file\:\/\/c\:\\Users\\herald\ jose\\Desktop\\flask_project\\blog\\blogApp\\static\\sass\/footer\.sass}line{font-family:\0000322}}
+        color: white;
+        margin-top: 30px; }
+        @media -sass-debug-info{filename{font-family:file\:\/\/c\:\\Users\\herald\ jose\\Desktop\\flask_project\\blog\\blogApp\\static\\sass\/footer\.sass}line{font-family:\0000323}}
         footer h1 {
           font-family: 'Scheherazade New', serif;
           font-size: 50px;
           padding: 20px 0; }
-          @media -sass-debug-info{filename{font-family:file\:\/\/c\:\\Users\\herald\ jose\\Desktop\\flask_project\\blog\\blogApp\\static\\sass\/footer\.sass}line{font-family:\0000327}}
+          @media -sass-debug-info{filename{font-family:file\:\/\/c\:\\Users\\herald\ jose\\Desktop\\flask_project\\blog\\blogApp\\static\\sass\/footer\.sass}line{font-family:\0000328}}
           footer p {
             font-family: 'Lato', sans-serif; }
-            @media -sass-debug-info{filename{font-family:file\:\/\/c\:\\Users\\herald\ jose\\Desktop\\flask_project\\blog\\blogApp\\static\\sass\/footer\.sass}line{font-family:\0000331}}
+            @media -sass-debug-info{filename{font-family:file\:\/\/c\:\\Users\\herald\ jose\\Desktop\\flask_project\\blog\\blogApp\\static\\sass\/footer\.sass}line{font-family:\0000332}}
             footer .footer-container {
               width: 80vw;
               max-width: 1440px;
               display: flex;
               flex-wrap: wrap;
               justify-content: space-between; }
-              @media -sass-debug-info{filename{font-family:file\:\/\/c\:\\Users\\herald\ jose\\Desktop\\flask_project\\blog\\blogApp\\static\\sass\/footer\.sass}line{font-family:\0000337}}
+              @media -sass-debug-info{filename{font-family:file\:\/\/c\:\\Users\\herald\ jose\\Desktop\\flask_project\\blog\\blogApp\\static\\sass\/footer\.sass}line{font-family:\0000338}}
               footer .footer-container .about-us {
                 width: 20vw;
                 max-width: 288px; }
-                @media -sass-debug-info{filename{font-family:file\:\/\/c\:\\Users\\herald\ jose\\Desktop\\flask_project\\blog\\blogApp\\static\\sass\/footer\.sass}line{font-family:\0000342}}
+                @media -sass-debug-info{filename{font-family:file\:\/\/c\:\\Users\\herald\ jose\\Desktop\\flask_project\\blog\\blogApp\\static\\sass\/footer\.sass}line{font-family:\0000343}}
                 footer .footer-container .contact-us {
                   max-width: 288px;
                   width: 20vw; }
-                  @media -sass-debug-info{filename{font-family:file\:\/\/c\:\\Users\\herald\ jose\\Desktop\\flask_project\\blog\\blogApp\\static\\sass\/footer\.sass}line{font-family:\0000345}}
+                  @media -sass-debug-info{filename{font-family:file\:\/\/c\:\\Users\\herald\ jose\\Desktop\\flask_project\\blog\\blogApp\\static\\sass\/footer\.sass}line{font-family:\0000346}}
                   footer .footer-container .contact-us address {
                     font-family: 'Lato', sans-serif; }
-                    @media -sass-debug-info{filename{font-family:file\:\/\/c\:\\Users\\herald\ jose\\Desktop\\flask_project\\blog\\blogApp\\static\\sass\/footer\.sass}line{font-family:\0000349}}
+                    @media -sass-debug-info{filename{font-family:file\:\/\/c\:\\Users\\herald\ jose\\Desktop\\flask_project\\blog\\blogApp\\static\\sass\/footer\.sass}line{font-family:\0000350}}
                     footer .footer-container .contact-us a {
                       color: white;
                       text-decoration: none; }
-              @media -sass-debug-info{filename{font-family:file\:\/\/c\:\\Users\\herald\ jose\\Desktop\\flask_project\\blog\\blogApp\\static\\sass\/footer\.sass}line{font-family:\0000356}}
+              @media -sass-debug-info{filename{font-family:file\:\/\/c\:\\Users\\herald\ jose\\Desktop\\flask_project\\blog\\blogApp\\static\\sass\/footer\.sass}line{font-family:\0000357}}
               footer .footer-container .socials {
                 max-width: 288px;
                 width: 20vw;
                 display: flex;
                 justify-content: center;
                 align-items: center; }
-                @media -sass-debug-info{filename{font-family:file\:\/\/c\:\\Users\\herald\ jose\\Desktop\\flask_project\\blog\\blogApp\\static\\sass\/footer\.sass}line{font-family:\0000364}}
+                @media -sass-debug-info{filename{font-family:file\:\/\/c\:\\Users\\herald\ jose\\Desktop\\flask_project\\blog\\blogApp\\static\\sass\/footer\.sass}line{font-family:\0000365}}
                 footer .footer-container ul {
                   list-style: none;
                   display: flex;
                   flex-wrap: wrap;
                   justify-content: flex-start; }
-                  @media -sass-debug-info{filename{font-family:file\:\/\/c\:\\Users\\herald\ jose\\Desktop\\flask_project\\blog\\blogApp\\static\\sass\/footer\.sass}line{font-family:\0000368}}
+                  @media -sass-debug-info{filename{font-family:file\:\/\/c\:\\Users\\herald\ jose\\Desktop\\flask_project\\blog\\blogApp\\static\\sass\/footer\.sass}line{font-family:\0000369}}
                   footer .footer-container ul li {
                     margin: 20px 0; }
-                    @media -sass-debug-info{filename{font-family:file\:\/\/c\:\\Users\\herald\ jose\\Desktop\\flask_project\\blog\\blogApp\\static\\sass\/footer\.sass}line{font-family:\0000371}}
+                    @media -sass-debug-info{filename{font-family:file\:\/\/c\:\\Users\\herald\ jose\\Desktop\\flask_project\\blog\\blogApp\\static\\sass\/footer\.sass}line{font-family:\0000372}}
                     footer .footer-container ul a {
                       color: white;
                       margin: 20px 20px; }
-                      @media -sass-debug-info{filename{font-family:file\:\/\/c\:\\Users\\herald\ jose\\Desktop\\flask_project\\blog\\blogApp\\static\\sass\/footer\.sass}line{font-family:\0000374}}
+                      @media -sass-debug-info{filename{font-family:file\:\/\/c\:\\Users\\herald\ jose\\Desktop\\flask_project\\blog\\blogApp\\static\\sass\/footer\.sass}line{font-family:\0000375}}
                       footer .footer-container ul a i {
                         font-size: 40px; }
 
-  @media -sass-debug-info{filename{font-family:file\:\/\/c\:\\Users\\herald\ jose\\Desktop\\flask_project\\blog\\blogApp\\static\\sass\/footer\.sass}line{font-family:\0000387}}
+  @media -sass-debug-info{filename{font-family:file\:\/\/c\:\\Users\\herald\ jose\\Desktop\\flask_project\\blog\\blogApp\\static\\sass\/footer\.sass}line{font-family:\0000388}}
   @media (max-width: 550px) {
-    @media -sass-debug-info{filename{font-family:file\:\/\/c\:\\Users\\herald\ jose\\Desktop\\flask_project\\blog\\blogApp\\static\\sass\/footer\.sass}line{font-family:\0000387}}
+    @media -sass-debug-info{filename{font-family:file\:\/\/c\:\\Users\\herald\ jose\\Desktop\\flask_project\\blog\\blogApp\\static\\sass\/footer\.sass}line{font-family:\0000388}}
     footer .footer-container {
       flex-direction: column;
       text-align: center;   }
-      @media -sass-debug-info{filename{font-family:file\:\/\/c\:\\Users\\herald\ jose\\Desktop\\flask_project\\blog\\blogApp\\static\\sass\/footer\.sass}line{font-family:\0000390}}
+      @media -sass-debug-info{filename{font-family:file\:\/\/c\:\\Users\\herald\ jose\\Desktop\\flask_project\\blog\\blogApp\\static\\sass\/footer\.sass}line{font-family:\0000391}}
       footer .footer-container .about-us {
         width: 80vw;
         margin: 20px 0;
         max-width: 80vw;   }
-        @media -sass-debug-info{filename{font-family:file\:\/\/c\:\\Users\\herald\ jose\\Desktop\\flask_project\\blog\\blogApp\\static\\sass\/footer\.sass}line{font-family:\0000396}}
+        @media -sass-debug-info{filename{font-family:file\:\/\/c\:\\Users\\herald\ jose\\Desktop\\flask_project\\blog\\blogApp\\static\\sass\/footer\.sass}line{font-family:\0000397}}
         footer .footer-container .contact-us {
           width: 80vw;
           margin: 20px 0;
           max-width: 80vw;   }
-          @media -sass-debug-info{filename{font-family:file\:\/\/c\:\\Users\\herald\ jose\\Desktop\\flask_project\\blog\\blogApp\\static\\sass\/footer\.sass}line{font-family:\00003102}}
+          @media -sass-debug-info{filename{font-family:file\:\/\/c\:\\Users\\herald\ jose\\Desktop\\flask_project\\blog\\blogApp\\static\\sass\/footer\.sass}line{font-family:\00003103}}
           footer .footer-container .socials {
             width: 80vw;
             margin: 20px 0;
             max-width: 80vw;   }
-            @media -sass-debug-info{filename{font-family:file\:\/\/c\:\\Users\\herald\ jose\\Desktop\\flask_project\\blog\\blogApp\\static\\sass\/footer\.sass}line{font-family:\00003106}}
-            footer .footer-container .socials ul a i {
-              font-size: 20px;   }
-              @media -sass-debug-info{filename{font-family:file\:\/\/c\:\\Users\\herald\ jose\\Desktop\\flask_project\\blog\\blogApp\\static\\sass\/footer\.sass}line{font-family:\00003110}}
-              footer .footer-container .socials ul a {
-                margin: 10px 10px;   }
+            @media -sass-debug-info{filename{font-family:file\:\/\/c\:\\Users\\herald\ jose\\Desktop\\flask_project\\blog\\blogApp\\static\\sass\/footer\.sass}line{font-family:\00003107}}
+            footer .footer-container .socials ul {
+              flex-direction: row;   }
+              @media -sass-debug-info{filename{font-family:file\:\/\/c\:\\Users\\herald\ jose\\Desktop\\flask_project\\blog\\blogApp\\static\\sass\/footer\.sass}line{font-family:\00003111}}
+              footer .footer-container .socials ul a i {
+                font-size: 20px;   }
+                @media -sass-debug-info{filename{font-family:file\:\/\/c\:\\Users\\herald\ jose\\Desktop\\flask_project\\blog\\blogApp\\static\\sass\/footer\.sass}line{font-family:\00003115}}
+                footer .footer-container .socials ul a {
+                  margin: 10px 10px;   }
+}
+
+  @media -sass-debug-info{filename{font-family:file\:\/\/c\:\\Users\\herald\ jose\\Desktop\\flask_project\\blog\\blogApp\\static\\sass\/footer\.sass}line{font-family:\00003128}}
+  @media (max-width: 1030px) {
+    @media -sass-debug-info{filename{font-family:file\:\/\/c\:\\Users\\herald\ jose\\Desktop\\flask_project\\blog\\blogApp\\static\\sass\/footer\.sass}line{font-family:\00003128}}
+    footer .footer-container ul {
+      flex-direction: column;
+      align-items: center;   }
 }

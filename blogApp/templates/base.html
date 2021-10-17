@@ -6,10 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename = '/css/reset_css.css') }}">
     <script src="https://kit.fontawesome.com/9f37a45bca.js" crossorigin="anonymous"></script>
+    <script src="{{ url_for('static', filename = 'javascript/navbar.js') }}"></script>
     {% block styles %}
     {% endblock styles %}
-    <link rel="stylesheet" href="{{ url_for('static', filename = '/css/header.css') }}">
-    <!-- <link rel="stylesheet" href="{{ url_for('static', filename = '/css/footer.css') }}"> -->
+    {% assets filters="pyscss", output="gen/header.css", "sass/header.sass" %}
+        <link rel="stylesheet" href="{{ ASSET_URL }}">
+    {% endassets %}
     {% assets filters="pyscss", output="gen/footer.css", "sass/footer.sass" %}
         <link rel="stylesheet" href="{{ ASSET_URL }}">
     {% endassets %}
@@ -21,42 +23,41 @@
 </head>
 <body>
     {% block header %}
-        <header class="black">
-            <div class="head-container">
+        <header>
+            <div class="header-container">
+                <div class="banner">
+                    StoryTell
+                    <input type="checkbox" id="nav-checkbox" class="hide" onchange="navbarButton()">
+                    <label for="nav-checkbox" class="hide">
+                        <i class="fas fa-bars"></i>
+                    </label>
+                </div>
                 <nav>
-                    <div class="nav-link mobile-banner">
-                        <a href="{{ url_for('index') }}" class="main-banner">
-                            <h1 class="header-h1">
-                                STORYTIME
-                            </h1>
-                        </a>
-                    </div>
-                    <div class="list-wrapper">
-                        <ul class="list">
+                    <ul>
+                        <li class="nav-link">
+                            <a href="{{ url_for('index') }}" class="options active" onclick="active(event)">Home</a>
+                        </li>
+                        {% if current_user.is_authenticated %}
                             <li class="nav-link">
-                                <a href="{{ url_for('index') }}" class="options">HOME</a>
+                                <a href="{{ url_for('write') }}" class="options" onclick="active(event)">Write</a>
                             </li>
-                            {% if current_user.is_authenticated %}
-                                <li class="nav-link">
-                                    <a href="{{ url_for('write') }}" class="options">WRITE</a>
-                                </li>
-                                <li class="nav-link">
-                                    <a href="{{ url_for('profile', authorid = current_user.id) }}" class="options">PROFILE</a>
-                                </li>
-                                <li class="nav-link">
-                                    <a href="{{ url_for('logout') }}" class="options">LOGOUT</a>
-                                </li>
-                            {% else %}
-                                <li class="nav-link">
-                                    <a href="{{ url_for('author') }}" class="options">LOGIN</a>
-                                </li>
-                                <li class="nav-link">
-                                    <a href="{{ url_for('signup') }}" class="options">REGISTER</a>
-                                </li>
-                            {% endif %}
-                        </ul>
-                    </div>
+                            <li class="nav-link">
+                                <a href="{{ url_for('profile', authorid = current_user.id) }}" onclick="active(event)" class="options">Profile</a>
+                            </li>
+                            <li class="nav-link">
+                                <a href="{{ url_for('logout') }}" onclick="active(event)" class="options">Logout</a>
+                            </li>
+                        {% else %}
+                            <li class="nav-link">
+                                <a href="{{ url_for('author') }}" class="options" onclick="active(event)">Login</a>
+                            </li>
+                            <li class="nav-link">
+                                <a href="{{ url_for('signup') }}" class="options" onclick="active(event)">Register</a>
+                            </li>
+                        {% endif %}
+                    </ul>
                 </nav>
+            </div>
         </header>
     {% endblock header %}
 

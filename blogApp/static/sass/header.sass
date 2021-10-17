@@ -1,0 +1,132 @@
+@import url('https://fonts.googleapis.com/css2?family=Sacramento&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap');
+
+.hide {
+    display: none;
+    }
+
+header {
+    background-color: black;
+    color: white;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    height: 80px;
+    margin-bottom: 30px;
+
+    .header-container {
+        width:80vw;
+        max-width: 1440px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px 0;
+        }
+
+    .banner {
+        font-family: 'Sacramento', cursive;
+        font-size: 60px;
+        }
+
+    nav {
+        display: flex;
+        }
+
+    nav ul {
+        display: flex;
+        transition: all 03s ease;
+
+        li {
+            margin: 0 10px;
+
+            a {
+                font-family: 'Poppins', sans-serif;
+                text-decoration: none;
+                font-size: 20px;
+                background-color: black;
+                color: white;
+                padding: 5px 10px;
+                border-radius: 20px;
+                }
+
+            .active, a:hover {
+                color: black;
+                background-color: white;
+                }
+            }
+        }
+    }
+
+
+$breakpoint-navbar: 900px;
+@media (max-width: $breakpoint-navbar) {
+    header {
+        width: 100%;
+
+        .header-container {
+            flex-direction: column;
+            justify-content: flex-start;
+
+            .banner {
+                margin-bottom: 10vh;
+                font-size:50px;
+                width: 80vw;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+
+                label {
+                    display: inline;
+                    font-size: 42px;
+                    }
+                }
+        
+            nav {
+                display: none;
+                ul {
+                    flex-direction: column;
+                    height: 70vh;
+                    justify-content: space-evenly;
+                    align-items: center;
+                    }
+                }
+            }
+        }   
+    }
+// fix navbar display none issue later
+// @media (min-width: $breakpoint-navbar) {
+//     header {
+//         .header-container {
+//             nav {
+//                 display: flex;
+//                 }
+//             }
+//         }
+//     }
+$breakpoint-mobile: 480px;
+@media (max-width: $breakpoint-mobile) {
+    header {
+        .header-container{
+
+            .banner {
+                width: 90vw;
+                }
+            }
+        } 
+    }
+
+$breakpoint-small-mobile: 350px;
+@media (max-width: $breakpoint-small-mobile) {
+    header {
+        .header-container{
+
+            .banner {
+                font-size: 40px;
+
+                label {
+                    font-size: 30px;
+                    }
+                }
+            }
+        } 
+    }

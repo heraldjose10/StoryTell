@@ -19,6 +19,7 @@ footer {
     width: 100vw;
     justify-content: center;
     color: white;
+    margin-top: 30px;
 
     h1 {
         font-family: 'Scheherazade New', serif;
@@ -107,6 +108,10 @@ $breakpoint-tablet: 550px;
                 margin: 20px 0;
                 max-width: 80vw;
 
+                ul {
+                    flex-direction: row;
+                    }
+
                 ul a i {
                     font-size: 20px;
                     }
@@ -114,6 +119,18 @@ $breakpoint-tablet: 550px;
                 ul a {
                     margin: 10px 10px;
                     }
+                }
+            }
+        }
+    }
+
+$breakpoint-social: 1030px;
+@media (max-width: $breakpoint-social) {
+    footer {
+        .footer-container {
+            ul {
+                flex-direction: column;
+                align-items: center;
                 }
             }
         }
