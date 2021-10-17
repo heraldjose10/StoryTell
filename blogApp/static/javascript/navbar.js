@@ -13,12 +13,12 @@ function navbarButton(){
     } 
     else{
         header.style.height = '80px';
-        navbar.style.display = 'none';
+        navbar.style.display = 'none'; // need to fix 
         icon.classList.remove('fa-times');
         icon.classList.add('fa-bars');
     }
 }
-
+// need fix
 function active(e){
     var elems = document.querySelectorAll(".active");
     [].forEach.call(elems, function(el) {
