@@ -18,7 +18,6 @@ migrate = Migrate(app, db, render_as_batch=True)
 assets = Environment(app)
 app.config['ASSETS_DEBUG'] = True
 assets.url = app.static_url_path
-# scss = Bundle('sass/footer.scss', 'bar.scss', filters='pyscss', output='all.css')
-# assets.register('scss_all', scss)
 
 from blogApp import routes
+from blogApp import commands

@@ -28,7 +28,7 @@
                     {% endif %}
                 {% else %}
                     {% if author.about %}
-                        <p class="left-130px">{{ author.about }}</p>
+                        <p class="left-130px">{{ author.about|safe }}</p>
                     {% endif %}
                 {% endif %}
             </div>

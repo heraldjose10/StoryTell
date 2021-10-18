@@ -38,7 +38,6 @@ function addTag(e) {
 
 }
 
-
 const input = document.getElementById('js-target');
 const real_input = document.getElementsByClassName('hidden-input')[0];
 const post_btn = document.getElementById('post');

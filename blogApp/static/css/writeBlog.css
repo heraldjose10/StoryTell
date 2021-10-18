@@ -25,7 +25,7 @@ form legend{
 .form-set label{
     padding-bottom: 5px;
 }
-.form-set input{
+.form-inp{
     width: calc(80vw - 8px);
     max-width: 1016px;    
 }
@@ -111,7 +111,7 @@ form legend{
     blogInput{
         width: 90vw;
     }
-    .form-set input{
+    .form-inp{
         width: calc(90vw - 8px);
     }
     #summernotes-container{
