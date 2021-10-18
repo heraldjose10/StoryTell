@@ -35,7 +35,7 @@
                 <nav>
                     <ul>
                         <li class="nav-link">
-                            <a href="{{ url_for('index') }}" class="options active" onclick="active(event)">Home</a>
+                            <a href="{{ url_for('index') }}" class="options" onclick="active(event)">Home</a>
                         </li>
                         {% if current_user.is_authenticated %}
                             <li class="nav-link">

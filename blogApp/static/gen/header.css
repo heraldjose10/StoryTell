@@ -1,64 +1,67 @@
 @import url('https://fonts.googleapis.com/css2?family=Sacramento&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap'); 
   @media -sass-debug-info{filename{font-family:file\:\/\/c\:\\Users\\herald\ jose\\Desktop\\flask_project\\blog\\blogApp\\static\\sass\/header\.sass}line{font-family:\000034}}
-  .hide {
-    display: none; }
+  .stop-scrolling {
+    overflow: hidden; }
 
     @media -sass-debug-info{filename{font-family:file\:\/\/c\:\\Users\\herald\ jose\\Desktop\\flask_project\\blog\\blogApp\\static\\sass\/header\.sass}line{font-family:\000038}}
-    header {
-      background-color: black;
-      color: white;
-      width: 100vw;
-      display: flex;
-      justify-content: center;
-      height: 80px;
-      margin-bottom: 30px; }
-      @media -sass-debug-info{filename{font-family:file\:\/\/c\:\\Users\\herald\ jose\\Desktop\\flask_project\\blog\\blogApp\\static\\sass\/header\.sass}line{font-family:\0000316}}
-      header .header-container {
-        width: 80vw;
-        max-width: 1440px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 20px 0; }
-        @media -sass-debug-info{filename{font-family:file\:\/\/c\:\\Users\\herald\ jose\\Desktop\\flask_project\\blog\\blogApp\\static\\sass\/header\.sass}line{font-family:\0000325}}
-        header .banner {
-          font-family: 'Sacramento', cursive;
-          font-size: 60px; }
-          @media -sass-debug-info{filename{font-family:file\:\/\/c\:\\Users\\herald\ jose\\Desktop\\flask_project\\blog\\blogApp\\static\\sass\/header\.sass}line{font-family:\0000330}}
-          header nav {
-            display: flex; }
-            @media -sass-debug-info{filename{font-family:file\:\/\/c\:\\Users\\herald\ jose\\Desktop\\flask_project\\blog\\blogApp\\static\\sass\/header\.sass}line{font-family:\0000334}}
-            header nav ul {
-              display: flex;
-              transition: all 3s ease; }
-              @media -sass-debug-info{filename{font-family:file\:\/\/c\:\\Users\\herald\ jose\\Desktop\\flask_project\\blog\\blogApp\\static\\sass\/header\.sass}line{font-family:\0000337}}
-              header nav ul li {
-                margin: 0 10px; }
-                @media -sass-debug-info{filename{font-family:file\:\/\/c\:\\Users\\herald\ jose\\Desktop\\flask_project\\blog\\blogApp\\static\\sass\/header\.sass}line{font-family:\0000339}}
-                header nav ul li a {
-                  font-family: 'Poppins', sans-serif;
-                  text-decoration: none;
-                  font-size: 20px;
-                  background-color: black;
-                  color: white;
-                  padding: 5px 10px;
-                  border-radius: 20px; }
-                  @media -sass-debug-info{filename{font-family:file\:\/\/c\:\\Users\\herald\ jose\\Desktop\\flask_project\\blog\\blogApp\\static\\sass\/header\.sass}line{font-family:\0000349}}
-                  header nav ul li .active, header nav ul li a:hover {
-                    color: black;
-                    background-color: white; }
+    .hide {
+      display: none; }
 
-  @media -sass-debug-info{filename{font-family:file\:\/\/c\:\\Users\\herald\ jose\\Desktop\\flask_project\\blog\\blogApp\\static\\sass\/header\.sass}line{font-family:\0000362}}
+      @media -sass-debug-info{filename{font-family:file\:\/\/c\:\\Users\\herald\ jose\\Desktop\\flask_project\\blog\\blogApp\\static\\sass\/header\.sass}line{font-family:\0000312}}
+      header {
+        background-color: black;
+        color: white;
+        width: 100vw;
+        display: flex;
+        justify-content: center;
+        height: 80px;
+        margin-bottom: 30px; }
+        @media -sass-debug-info{filename{font-family:file\:\/\/c\:\\Users\\herald\ jose\\Desktop\\flask_project\\blog\\blogApp\\static\\sass\/header\.sass}line{font-family:\0000320}}
+        header .header-container {
+          width: 80vw;
+          max-width: 1440px;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: 20px 0; }
+          @media -sass-debug-info{filename{font-family:file\:\/\/c\:\\Users\\herald\ jose\\Desktop\\flask_project\\blog\\blogApp\\static\\sass\/header\.sass}line{font-family:\0000329}}
+          header .banner {
+            font-family: 'Sacramento', cursive;
+            font-size: 60px; }
+            @media -sass-debug-info{filename{font-family:file\:\/\/c\:\\Users\\herald\ jose\\Desktop\\flask_project\\blog\\blogApp\\static\\sass\/header\.sass}line{font-family:\0000334}}
+            header nav {
+              display: flex; }
+              @media -sass-debug-info{filename{font-family:file\:\/\/c\:\\Users\\herald\ jose\\Desktop\\flask_project\\blog\\blogApp\\static\\sass\/header\.sass}line{font-family:\0000338}}
+              header nav ul {
+                display: flex; }
+                @media -sass-debug-info{filename{font-family:file\:\/\/c\:\\Users\\herald\ jose\\Desktop\\flask_project\\blog\\blogApp\\static\\sass\/header\.sass}line{font-family:\0000340}}
+                header nav ul li {
+                  margin: 0 10px; }
+                  @media -sass-debug-info{filename{font-family:file\:\/\/c\:\\Users\\herald\ jose\\Desktop\\flask_project\\blog\\blogApp\\static\\sass\/header\.sass}line{font-family:\0000342}}
+                  header nav ul li a {
+                    font-family: 'Poppins', sans-serif;
+                    text-decoration: none;
+                    font-size: 20px;
+                    background-color: black;
+                    color: white;
+                    padding: 5px 10px;
+                    border-radius: 20px; }
+                    @media -sass-debug-info{filename{font-family:file\:\/\/c\:\\Users\\herald\ jose\\Desktop\\flask_project\\blog\\blogApp\\static\\sass\/header\.sass}line{font-family:\0000352}}
+                    header nav ul li .active, header nav ul li a:hover {
+                      color: black;
+                      background-color: white; }
+
+  @media -sass-debug-info{filename{font-family:file\:\/\/c\:\\Users\\herald\ jose\\Desktop\\flask_project\\blog\\blogApp\\static\\sass\/header\.sass}line{font-family:\0000365}}
   @media (max-width: 900px) {
-    @media -sass-debug-info{filename{font-family:file\:\/\/c\:\\Users\\herald\ jose\\Desktop\\flask_project\\blog\\blogApp\\static\\sass\/header\.sass}line{font-family:\0000362}}
+    @media -sass-debug-info{filename{font-family:file\:\/\/c\:\\Users\\herald\ jose\\Desktop\\flask_project\\blog\\blogApp\\static\\sass\/header\.sass}line{font-family:\0000365}}
     header {
       width: 100%;   }
-      @media -sass-debug-info{filename{font-family:file\:\/\/c\:\\Users\\herald\ jose\\Desktop\\flask_project\\blog\\blogApp\\static\\sass\/header\.sass}line{font-family:\0000364}}
+      @media -sass-debug-info{filename{font-family:file\:\/\/c\:\\Users\\herald\ jose\\Desktop\\flask_project\\blog\\blogApp\\static\\sass\/header\.sass}line{font-family:\0000367}}
       header .header-container {
         flex-direction: column;
         justify-content: flex-start;   }
-        @media -sass-debug-info{filename{font-family:file\:\/\/c\:\\Users\\herald\ jose\\Desktop\\flask_project\\blog\\blogApp\\static\\sass\/header\.sass}line{font-family:\0000367}}
+        @media -sass-debug-info{filename{font-family:file\:\/\/c\:\\Users\\herald\ jose\\Desktop\\flask_project\\blog\\blogApp\\static\\sass\/header\.sass}line{font-family:\0000370}}
         header .header-container .banner {
           margin-bottom: 10vh;
           font-size: 50px;
@@ -66,14 +69,14 @@
           display: flex;
           justify-content: space-between;
           align-items: center;   }
-          @media -sass-debug-info{filename{font-family:file\:\/\/c\:\\Users\\herald\ jose\\Desktop\\flask_project\\blog\\blogApp\\static\\sass\/header\.sass}line{font-family:\0000374}}
+          @media -sass-debug-info{filename{font-family:file\:\/\/c\:\\Users\\herald\ jose\\Desktop\\flask_project\\blog\\blogApp\\static\\sass\/header\.sass}line{font-family:\0000377}}
           header .header-container .banner label {
             display: inline;
             font-size: 42px;   }
-        @media -sass-debug-info{filename{font-family:file\:\/\/c\:\\Users\\herald\ jose\\Desktop\\flask_project\\blog\\blogApp\\static\\sass\/header\.sass}line{font-family:\0000381}}
+        @media -sass-debug-info{filename{font-family:file\:\/\/c\:\\Users\\herald\ jose\\Desktop\\flask_project\\blog\\blogApp\\static\\sass\/header\.sass}line{font-family:\0000384}}
         header .header-container nav {
           display: none;   }
-          @media -sass-debug-info{filename{font-family:file\:\/\/c\:\\Users\\herald\ jose\\Desktop\\flask_project\\blog\\blogApp\\static\\sass\/header\.sass}line{font-family:\0000382}}
+          @media -sass-debug-info{filename{font-family:file\:\/\/c\:\\Users\\herald\ jose\\Desktop\\flask_project\\blog\\blogApp\\static\\sass\/header\.sass}line{font-family:\0000385}}
           header .header-container nav ul {
             flex-direction: column;
             height: 70vh;
@@ -81,19 +84,22 @@
             align-items: center;   }
 }
 
-  @media -sass-debug-info{filename{font-family:file\:\/\/c\:\\Users\\herald\ jose\\Desktop\\flask_project\\blog\\blogApp\\static\\sass\/header\.sass}line{font-family:\00003107}}
+  @media -sass-debug-info{filename{font-family:file\:\/\/c\:\\Users\\herald\ jose\\Desktop\\flask_project\\blog\\blogApp\\static\\sass\/header\.sass}line{font-family:\00003101}}
   @media (max-width: 480px) {
-    @media -sass-debug-info{filename{font-family:file\:\/\/c\:\\Users\\herald\ jose\\Desktop\\flask_project\\blog\\blogApp\\static\\sass\/header\.sass}line{font-family:\00003107}}
-    header .header-container .banner {
-      width: 90vw;   }
+    @media -sass-debug-info{filename{font-family:file\:\/\/c\:\\Users\\herald\ jose\\Desktop\\flask_project\\blog\\blogApp\\static\\sass\/header\.sass}line{font-family:\00003101}}
+    header {
+      transition: all 0.2s ease;   }
+      @media -sass-debug-info{filename{font-family:file\:\/\/c\:\\Users\\herald\ jose\\Desktop\\flask_project\\blog\\blogApp\\static\\sass\/header\.sass}line{font-family:\00003103}}
+      header .header-container .banner {
+        width: 90vw;   }
 }
 
-  @media -sass-debug-info{filename{font-family:file\:\/\/c\:\\Users\\herald\ jose\\Desktop\\flask_project\\blog\\blogApp\\static\\sass\/header\.sass}line{font-family:\00003119}}
+  @media -sass-debug-info{filename{font-family:file\:\/\/c\:\\Users\\herald\ jose\\Desktop\\flask_project\\blog\\blogApp\\static\\sass\/header\.sass}line{font-family:\00003115}}
   @media (max-width: 350px) {
-    @media -sass-debug-info{filename{font-family:file\:\/\/c\:\\Users\\herald\ jose\\Desktop\\flask_project\\blog\\blogApp\\static\\sass\/header\.sass}line{font-family:\00003119}}
+    @media -sass-debug-info{filename{font-family:file\:\/\/c\:\\Users\\herald\ jose\\Desktop\\flask_project\\blog\\blogApp\\static\\sass\/header\.sass}line{font-family:\00003115}}
     header .header-container .banner {
       font-size: 40px;   }
-      @media -sass-debug-info{filename{font-family:file\:\/\/c\:\\Users\\herald\ jose\\Desktop\\flask_project\\blog\\blogApp\\static\\sass\/header\.sass}line{font-family:\00003121}}
+      @media -sass-debug-info{filename{font-family:file\:\/\/c\:\\Users\\herald\ jose\\Desktop\\flask_project\\blog\\blogApp\\static\\sass\/header\.sass}line{font-family:\00003117}}
       header .header-container .banner label {
         font-size: 30px;   }
 }

@@ -1,6 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Sacramento&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap');
 
+.stop-scrolling {
+  overflow: hidden;
+    }
+
 .hide {
     display: none;
     }
@@ -34,7 +38,6 @@ header {
 
     nav ul {
         display: flex;
-        transition: all 03s ease;
 
         li {
             margin: 0 10px;
@@ -93,19 +96,12 @@ $breakpoint-navbar: 900px;
             }
         }   
     }
-// fix navbar display none issue later
-// @media (min-width: $breakpoint-navbar) {
-//     header {
-//         .header-container {
-//             nav {
-//                 display: flex;
-//                 }
-//             }
-//         }
-//     }
+
 $breakpoint-mobile: 480px;
 @media (max-width: $breakpoint-mobile) {
     header {
+        transition: all 0.2s ease;
+
         .header-container{
 
             .banner {

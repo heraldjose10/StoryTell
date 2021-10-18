@@ -26,18 +26,6 @@ function createTag() {
     real_input.value = resStr;
 }
 
-function addTag(e) {
-    if (e.keyCode == 32 || e.key == ',' || e.key == 'Enter') {
-        let tag = e.target.value;
-        if (tag.length > 2 && !tags.includes(tag.slice(0, -1))) {
-            tags.push(tag.slice(0, -1));
-            createTag();
-        }
-        input.value = '';
-    }
-
-}
-
 const input = document.getElementById('js-target');
 const real_input = document.getElementsByClassName('hidden-input')[0];
 const post_btn = document.getElementById('post');
@@ -49,9 +37,20 @@ function addToList(){
     })
 }
 
+function connect(e){
+    if(e.target.value.slice(-1)==' '){
+        let tag = e.target.value;
+        if (tag.length > 2 && !tags.includes(tag.slice(0, -1))) {
+            tags.push(tag.slice(0, -1));
+            createTag();
+        }
+        input.value = '';
+    }
+}
 window.onload = addToList;
 
-input.addEventListener("keyup", addTag);
+input.addEventListener("input", connect);
+
 
 
 
