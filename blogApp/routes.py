@@ -32,6 +32,8 @@ def author():
 @app.route('/blog/<blogid>')
 def blogpage(blogid):
     blog = Blogs.query.get(int(blogid))
+    # format = "%d/%m/%Y"
+    # print(blog._created.strftime(format))
     return render_template('blogpage.html', blog=blog)
 
 
