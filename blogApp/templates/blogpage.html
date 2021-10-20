@@ -14,7 +14,7 @@
                 <p>Posted by <a href="{{ url_for('profile', authorid = blog.author.id) }}">{{ blog.author.name }}</a> </p>
             </div>
             <div class="post-info">
-                <p>On {{ blog._created }}</p>
+                <p>{{ moment(blog._created).fromNow() }}</p>
             </div>
             <div class="content">
                 {{ blog.content|safe }}
