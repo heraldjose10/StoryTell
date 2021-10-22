@@ -38,11 +38,21 @@ main{
     justify-items: center;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
     min-height: 40vh;
 }
 main div{
     max-width: 768px;
+}
+.reset_pass {
+    font-family: Verdana;
+    font-size: medium;
+    margin-top: 10px;
+}
+.reset_pass a {
+    text-decoration: underline;
+    color: black;
+    
 }
 .login-button{
     font-family: Verdana;

@@ -3,8 +3,8 @@ import bleach
 import os
 import base64
 from flask import render_template, url_for, redirect, request, abort
-from blogApp import app, bcrypt, db
-from blogApp.forms import AuthorLogin, RegisterForm, BlogForm, ProfileForm
+from blogApp import app, bcrypt, db, email
+from blogApp.forms import AuthorLogin, RegisterForm, BlogForm, ProfileForm, PasswordResetForm, NewPasswordForm
 from blogApp.models import Authors, Blogs, Tags
 from flask_login import login_user, logout_user, login_required, current_user
 
@@ -32,8 +32,6 @@ def author():
 @app.route('/blog/<blogid>')
 def blogpage(blogid):
     blog = Blogs.query.get(int(blogid))
-    # format = "%d/%m/%Y"
-    # print(blog._created.strftime(format))
     return render_template('blogpage.html', blog=blog)
 
 
@@ -193,3 +191,31 @@ def edit_profile(authorid):
             return render_template('edit_profile.html', title = 'Edit Profile', form = form)
     else:
         abort(403)
+
+
+@app.route('/reset_password_request', methods = ['GET', 'POST'])
+def reset_pass_request():
+    if current_user.is_authenticated:
+        return redirect(url_for('index'))
+    form = PasswordResetForm()
+    if form.validate_on_submit():
+        user = Authors.query.filter_by(email = form.email.data).first()
+        if user:
+            email.send_pass_reset_mail(user)
+        return redirect(url_for('author'))
+    return render_template('password_reset_form.html', title = 'reset password', form = form)
+
+
+@app.route('/reset_password/<token>', methods = ['GET', 'POST'])
+def reset_password(token):
+    if current_user.is_authenticated:
+        return redirect(url_for('index'))
+    form = NewPasswordForm()
+    user = Authors.verify_password_reset_token(token)
+    if user == None:
+        return redirect(url_for('index'))
+    if form.validate_on_submit():
+        user.password = bcrypt.generate_password_hash(form.create_password.data)
+        db.session.commit()
+        return redirect(url_for('author'))       
+    return render_template('create_new_password.html', form = form, title = 'new password')
