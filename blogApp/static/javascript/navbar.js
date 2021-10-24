@@ -37,4 +37,7 @@ window.addEventListener('resize', function () {
     if(window.innerWidth>900){
         document.getElementsByTagName('nav')[0].style.display = 'flex';
     }
+    if(window.innerWidth<=900){
+        document.getElementsByTagName('nav')[0].style.display = 'none';
+    }
   })
