@@ -10,19 +10,19 @@
         <div class="recents">
             {% for blog in blogs %}
                 <div class="card">
-                    <a href="{{ url_for('blogpage', blogid = blog.id) }}" class="postlink">
+                    <a href="{{ url_for('posts.blogpage', blogid = blog.id) }}" class="postlink">
                         <div class="post">
                             <img src="{{ url_for('static', filename = 'assets/thumbnails/{}'.format(blog.thumbnail)) }}">
                             <h2>{{ blog.title }}</h2>
                         </div>
                     </a>
                     <div class="author-name">
-                        <p>By <a href="{{ url_for('profile', authorid = blog.author.id) }}">{{ blog.author.name }}</a></p>
+                        <p>By <a href="{{ url_for('profile.profile', authorid = blog.author.id) }}">{{ blog.author.name }}</a></p>
                     </div>
                     <ul class="tags">
                         {% for tag in blog.tags %}
                             <li>
-                                <a href="{{ url_for('search', tagName = tag.name) }}">{{ '#'+tag.name }}</a>
+                                <a href="{{ url_for('core.search', tagName = tag.name) }}">{{ '#'+tag.name }}</a>
                             </li>
                         {% endfor %}
                     </ul>

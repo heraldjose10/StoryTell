@@ -1,8 +1,8 @@
-import email
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField, BooleanField, TextAreaField
+from wtforms import StringField, PasswordField, BooleanField, SubmitField
 from wtforms.validators import DataRequired, Email, EqualTo, ValidationError
 from blogApp.models import Authors
+
 
 class AuthorLogin(FlaskForm):
     email = StringField('email', validators= [DataRequired(), Email()])
@@ -26,19 +26,6 @@ class RegisterForm(FlaskForm):
         user = Authors.query.filter_by(email = field.data).first()
         if user:
             raise ValidationError('A account already exists for this email')
-
-
-class BlogForm(FlaskForm):
-    title = StringField('title', validators= [DataRequired()])
-    editordata = TextAreaField('add contents', validators= [DataRequired()])
-    tags = StringField('tags')
-    thumbnail_data = StringField('thumbnail')
-    post = SubmitField('post')
-
-class ProfileForm(FlaskForm):
-    about_me = TextAreaField('about me', validators = [DataRequired()])
-    profile_pic_encoded = StringField('profile pic')
-    post = SubmitField('update')
 
 
 class PasswordResetForm(FlaskForm):

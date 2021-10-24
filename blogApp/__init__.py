@@ -16,7 +16,7 @@ app.config['MAX_CONTENT_LENGTH'] = 5 * 1024 * 1024
 db = SQLAlchemy(app)
 bcrypt = Bcrypt(app)
 login_manager = LoginManager(app)
-login_manager.login_view = "author"
+login_manager.login_view = "auth.author"
 migrate = Migrate(app, db, render_as_batch=True)
 
 assets = Environment(app)
@@ -34,4 +34,16 @@ app.config['ADMINS'] = ['heraldjose11@gmail.com']
 
 mail = Mail(app)
 
-from blogApp import routes, commands
+from blogApp.core import bp as main_bp
+app.register_blueprint(main_bp)
+
+from blogApp.auth import bp as auth_bp
+app.register_blueprint(auth_bp)
+
+from blogApp.posts import bp as posts_bp
+app.register_blueprint(posts_bp)
+
+from blogApp.profile import bp as profile_bp
+app.register_blueprint(profile_bp)
+
+from blogApp import commands

@@ -35,24 +35,24 @@
                 <nav>
                     <ul>
                         <li class="nav-link">
-                            <a href="{{ url_for('index') }}" class="options" onclick="active(event)">Home</a>
+                            <a href="{{ url_for('core.index') }}" class="options" onclick="active(event)">Home</a>
                         </li>
                         {% if current_user.is_authenticated %}
                             <li class="nav-link">
-                                <a href="{{ url_for('write') }}" class="options" onclick="active(event)">Write</a>
+                                <a href="{{ url_for('posts.write') }}" class="options" onclick="active(event)">Write</a>
                             </li>
                             <li class="nav-link">
-                                <a href="{{ url_for('profile', authorid = current_user.id) }}" onclick="active(event)" class="options">Profile</a>
+                                <a href="{{ url_for('profile.profile', authorid = current_user.id) }}" onclick="active(event)" class="options">Profile</a>
                             </li>
                             <li class="nav-link">
-                                <a href="{{ url_for('logout') }}" onclick="active(event)" class="options">Logout</a>
+                                <a href="{{ url_for('auth.logout') }}" onclick="active(event)" class="options">Logout</a>
                             </li>
                         {% else %}
                             <li class="nav-link">
-                                <a href="{{ url_for('author') }}" class="options" onclick="active(event)">Login</a>
+                                <a href="{{ url_for('auth.author') }}" class="options" onclick="active(event)">Login</a>
                             </li>
                             <li class="nav-link">
-                                <a href="{{ url_for('signup') }}" class="options" onclick="active(event)">Register</a>
+                                <a href="{{ url_for('auth.signup') }}" class="options" onclick="active(event)">Register</a>
                             </li>
                         {% endif %}
                     </ul>

@@ -19,7 +19,7 @@
             <div class="profile-edit">
                 {% if current_user.is_authenticated and current_user==author %}
                     <div>
-                        <a href = "{{ url_for('edit_profile', authorid = author.id) }}" class="edit-about">edit</a>
+                        <a href = "{{ url_for('profile.edit_profile', authorid = author.id) }}" class="edit-about">edit</a>
                     </div>
                     {% if author.about %}
                         <p>{{ author.about|safe }}</p>

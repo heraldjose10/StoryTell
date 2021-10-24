@@ -11,7 +11,7 @@
                 {{ blog.title }}
             </h1>
             <div class = "post-info">
-                <p>Posted by <a href="{{ url_for('profile', authorid = blog.author.id) }}">{{ blog.author.name }}</a> </p>
+                <p>Posted by <a href="{{ url_for('profile.profile', authorid = blog.author.id) }}">{{ blog.author.name }}</a> </p>
             </div>
             <div class="post-info">
                 <p>{{ moment(blog._created).fromNow() }}</p>
@@ -23,7 +23,7 @@
                 <ul>
                     {% for tag in blog.tags %}
                         <li>
-                            <a href="{{ url_for('search', tagName = tag.name) }}">{{ tag.name }}</a>
+                            <a href="{{ url_for('core.search', tagName = tag.name) }}">{{ tag.name }}</a>
                         </li>
                     {% endfor %}
                 </ul>
@@ -32,10 +32,10 @@
         {% if current_user == blog.author %}
             <div class="del-update-buttons">
                 <div>
-                    <a href = "{{ url_for('update_post', blogid = blog.id) }}">update</a>
+                    <a href = "{{ url_for('posts.update_post', blogid = blog.id) }}">update</a>
                 </div>
                 <div>
-                    <a href = "{{ url_for('delete_post', blogid = blog.id) }}">delete</a>
+                    <a href = "{{ url_for('posts.delete_post', blogid = blog.id) }}">delete</a>
                 </div>
             </div>
         {% endif %}
