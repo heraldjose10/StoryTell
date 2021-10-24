@@ -1,5 +1,5 @@
-from blogApp import app
+from blogApp import create_app
 
 if __name__=='__main__':
+    app = create_app()
     app.run(debug=True,  port=5500, host= '0.0.0.0')
-    # app.run( port=5500)

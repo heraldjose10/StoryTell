@@ -1,12 +1,9 @@
-import re
-from sqlalchemy.orm import backref
-from blogApp import db, login_manager, app
+from flask import current_app
+from blogApp import db, login_manager
 from datetime import datetime
 from flask_login import UserMixin
 import jwt
 from time import time
-
-import blogApp
 
 
 blogtags = db.Table('blogtags',
@@ -34,13 +31,13 @@ class Authors(db.Model, UserMixin):
         return "User(name : {}, email : {})".format(self.name, self.email)
 
     def get_password_reset_token(self):
-        token = jwt.encode({'password_reset':self.id, 'exp':time()+3600}, app.config['SECRET_KEY'], algorithm='HS256', )
+        token = jwt.encode({'password_reset':self.id, 'exp':time()+3600}, current_app.config['SECRET_KEY'], algorithm='HS256', )
         return token
 
     @staticmethod
     def verify_password_reset_token(token):
         try:
-            id = jwt.decode(token, app.config['SECRET_KEY'], algorithms='HS256')['password_reset']
+            id = jwt.decode(token, current_app.config['SECRET_KEY'], algorithms='HS256')['password_reset']
             pass
         except:
             return

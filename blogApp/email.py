@@ -1,5 +1,12 @@
 from flask_mail import Message
-from blogApp import mail, app
+from blogApp import mail
+from threading import Thread
+from flask import current_app
+
+
+def asycn_mail(app, msg):
+    with app.app_context():
+        mail.send(msg)
 
 
 def send_mail(recipients, sender, text_body, html_body):
@@ -7,9 +14,6 @@ def send_mail(recipients, sender, text_body, html_body):
                   recipients=recipients, sender=sender)
     msg.body = text_body
     msg.html = html_body
-    print(recipients)
-    print(sender)
-    mail.send(msg)
-    
+    Thread(target= asycn_mail, args=(current_app._get_current_object(), msg)).start()    
 
 
