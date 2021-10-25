@@ -1,5 +1,6 @@
+import bcrypt
 from flask import current_app
-from blogApp import db, login_manager
+from blogApp import db, login_manager, bcrypt
 from datetime import datetime
 from flask_login import UserMixin
 import jwt
@@ -29,6 +30,12 @@ class Authors(db.Model, UserMixin):
 
     def __repr__(self):
         return "User(name : {}, email : {})".format(self.name, self.email)
+
+    def set_password(self, password):
+        self.password = bcrypt.generate_password_hash(password)
+
+    def check_password(self, password):
+        return bcrypt.check_password_hash(self.password, password)
 
     def get_password_reset_token(self):
         token = jwt.encode({'password_reset':self.id, 'exp':time()+3600}, current_app.config['SECRET_KEY'], algorithm='HS256', )

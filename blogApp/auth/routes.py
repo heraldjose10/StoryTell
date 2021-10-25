@@ -1,8 +1,9 @@
+from blogApp import auth
 from blogApp.auth.forms import AuthorLogin, RegisterForm, NewPasswordForm, PasswordResetForm
 from flask import redirect, render_template, url_for, request
 from blogApp.models import Authors
 from flask_login import current_user, login_user, login_required, logout_user
-from blogApp import db, bcrypt
+from blogApp import db
 from blogApp.auth import email, bp
 
 
@@ -13,7 +14,7 @@ def author():
     form = AuthorLogin()
     if form.validate_on_submit():
         user = Authors.query.filter_by(email=form.email.data).first()
-        if user and bcrypt.check_password_hash(user.password, form.password.data):
+        if user and user.check_password(form.password.data):
             login_user(user, remember=form.remember.data)
             next_page = request.args.get('next')
             return redirect(next_page) if next_page else redirect(url_for('core.index'))
@@ -33,8 +34,8 @@ def signup():
         return redirect(url_for('core.index'))
     form = RegisterForm()
     if form.validate_on_submit():
-        author = Authors(name=form.name.data, email=form.email.data,
-                         password=bcrypt.generate_password_hash(form.password.data))
+        author = Authors(name=form.name.data, email=form.email.data)
+        author.set_password(form.password.data)
         db.session.add(author)
         db.session.commit()
         return redirect('author')
@@ -63,7 +64,7 @@ def reset_password(token):
     if user == None:
         return redirect(url_for('core.index'))
     if form.validate_on_submit():
-        user.password = bcrypt.generate_password_hash(form.create_password.data)
+        user.set_password(form.create_password.data)
         db.session.commit()
         return redirect(url_for('auth.author'))       
     return render_template('create_new_password.html', form = form, title = 'new password')
