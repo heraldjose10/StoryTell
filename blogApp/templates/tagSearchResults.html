@@ -15,26 +15,29 @@
             Posts for "{{ tag.name }}"
         </h1>
         <div class="results">
-            {% for blog in searchResult %}
-                <div class="card">
-                    <a href="{{ url_for('posts.blogpage', blogid = blog.id) }}" class="postlink">
-                        <div class="post">
-                            <img src="{{ url_for('static', filename = 'assets/thumbnails/{}'.format(blog.thumbnail)) }}">
-                            <h2>{{ blog.title }}</h2>
+            {% if blog %}
+            <!-- fix issue when blog is None -->
+                {% for blog in searchResult %}
+                    <div class="card">
+                        <a href="{{ url_for('posts.blogpage', blogid = blog.id) }}" class="postlink">
+                            <div class="post">
+                                <img src="{{ url_for('static', filename = 'assets/thumbnails/{}'.format(blog.thumbnail)) }}">
+                                <h2>{{ blog.title }}</h2>
+                            </div>
+                        </a>
+                        <div class="author-name">
+                            <p>By <a href="{{ url_for('profile.profile', authorid = blog.author.id) }}">{{ blog.author.name }}</a></p>
                         </div>
-                    </a>
-                    <div class="author-name">
-                        <p>By <a href="{{ url_for('profile.profile', authorid = blog.author.id) }}">{{ blog.author.name }}</a></p>
+                        <ul class="tags">
+                            {% for tag in blog.tags %}
+                                <li>
+                                    <a href="{{ url_for('core.search', tagName = tag.name) }}">{{ '#'+tag.name }}</a>
+                                </li>
+                            {% endfor %}
+                        </ul>
                     </div>
-                    <ul class="tags">
-                        {% for tag in blog.tags %}
-                            <li>
-                                <a href="{{ url_for('core.search', tagName = tag.name) }}">{{ '#'+tag.name }}</a>
-                            </li>
-                        {% endfor %}
-                    </ul>
-                </div>
-            {% endfor %}
+                {% endfor %}
+            {% endif %}
         </div>
     </main>
 {% endblock main %}
