@@ -17,7 +17,7 @@ def blogpage(blogid):
     blogid : int
     """
     blog = Blogs.query.get(int(blogid))
-    return render_template('blogpage.html', blog=blog)
+    return render_template('posts/blogpage.html', blog=blog)
 
 
 @bp.route('/create_blog', methods=['Get', 'POST'])
@@ -54,7 +54,7 @@ def write():
         db.session.commit()
         return redirect(url_for('core.index'))  # redirect to homepage
 
-    return render_template('writeBlog.html', legend="Create new post", title='Post', form=form)
+    return render_template('posts/writeBlog.html', legend="Create new post", title='Post', form=form)
 
 
 @bp.route('/blog/<int:blogid>/update', methods=['GET', 'POST'])
@@ -103,7 +103,7 @@ def update_post(blogid):
         form.editordata.data = blog.content
         tags = blog.tags
 
-    return render_template('writeBlog.html', legend='Update post', title='update', form=form, tags=tags)
+    return render_template('posts/writeBlog.html', legend='Update post', title='update', form=form, tags=tags)
 
 
 @bp.route('/blog/<int:blogid>/delete', methods=['GET'])

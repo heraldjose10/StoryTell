@@ -22,7 +22,7 @@ def author():
             # redirect to next page after logging in if next page exists or redirect to homepage
             return redirect(next_page) if next_page else redirect(url_for('core.index'))
 
-    return render_template('login.html', title='Login', form=form)
+    return render_template('auth/login.html', title='Login', form=form)
 
 
 @bp.route('/logout')
@@ -49,7 +49,7 @@ def signup():
         db.session.commit()
         return redirect('author')  # redirect to login page
 
-    return render_template('register.html', title='Register', form=form)
+    return render_template('auth/register.html', title='Register', form=form)
 
 
 @bp.route('/reset_password_request', methods=['GET', 'POST'])
@@ -66,7 +66,7 @@ def reset_pass_request():
             email.send_pass_reset_mail(user)
         return redirect(url_for('auth.author'))  # redirect to login page
 
-    return render_template('password_reset_form.html', title='reset password', form=form)
+    return render_template('auth/password_reset_form.html', title='reset password', form=form)
 
 
 @bp.route('/reset_password/<token>', methods=['GET', 'POST'])
@@ -93,4 +93,4 @@ def reset_password(token):
         db.session.commit()
         return redirect(url_for('auth.author'))  # redirect to login page
 
-    return render_template('create_new_password.html', form=form, title='new password')
+    return render_template('auth/create_new_password.html', form=form, title='new password')

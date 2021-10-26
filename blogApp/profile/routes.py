@@ -16,7 +16,7 @@ def profile(authorid):
     authorid : int
     """
     author = Authors.query.get_or_404(authorid)
-    return render_template('author.html', author=author, title='Profile-'+author.name)
+    return render_template('profile/author.html', author=author, title='Profile-'+author.name)
 
 
 @bp.route('/profile/<int:authorid>/edit', methods=['GET', 'POST'])
@@ -50,7 +50,7 @@ def edit_profile(authorid):
 
         elif request.method == 'GET':
             form.about_me.data = author.about  # populate about field with existing data
-            return render_template('edit_profile.html', title='Edit Profile', form=form)
+            return render_template('profile/edit_profile.html', title='Edit Profile', form=form)
 
     else:
         # throw a 403 error if current user is not author of blog/post

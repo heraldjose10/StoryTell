@@ -8,7 +8,7 @@ from blogApp.core import bp
 def index():
     """Route for homepage"""
     blogs = Blogs.query.order_by(Blogs._created.desc()).limit(6).all()  # query six blogs in descending order from Blogs database
-    return render_template('home.html', title='Home', blogs=blogs)
+    return render_template('core/home.html', title='Home', blogs=blogs)
 
 
 @bp.route('/tag/<string:tagName>')
@@ -26,4 +26,4 @@ def search(tagName):
     else:
         blogs = None
         
-    return render_template('tagSearchResults.html', searchResult=blogs, tag=tag)
+    return render_template('core/tagSearchResults.html', searchResult=blogs, tag=tag)
