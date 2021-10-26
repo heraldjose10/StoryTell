@@ -1,5 +1,6 @@
 __pycache__/
-assets
+profile_pics
+thumbnails
 .webassets-cache
 blogApp/site.db
 .env
