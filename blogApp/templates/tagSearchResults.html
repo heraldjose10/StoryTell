@@ -15,7 +15,7 @@
             Posts for "{{ tag.name }}"
         </h1>
         <div class="results">
-            {% if blog %}
+            {% if searchResult %}
             <!-- fix issue when blog is None -->
                 {% for blog in searchResult %}
                     <div class="card">

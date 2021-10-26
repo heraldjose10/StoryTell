@@ -5,6 +5,7 @@ from config import Config
 
 
 class TestConfig(Config):
+    """Class with configurations for testing"""
     TESTING = True
     SQLALCHEMY_DATABASE_URI = 'sqlite://'
 
@@ -12,17 +13,20 @@ class TestConfig(Config):
 class DataBaseTest(unittest.TestCase):
 
     def setUp(self):
+        """function to create database and app context for testing"""
         self.app = create_app(config_class=TestConfig)
         self.app_context = self.app.app_context()
-        self.app_context.push()
+        self.app_context.push()  # push app context to current context
         db.create_all()
 
     def tearDown(self):
+        """deletes testing database and app context"""
         db.session.remove()
         db.drop_all()
         self.app_context.pop()
 
     def testRegisterUser(self):
+        """Create two users and test adding them to database"""
         user1 = Authors(name='UserOne', email='user1@mail.com')
         user1.set_password('user1')
         user2 = Authors(name='UserTwo', email='user2@mail.com')
@@ -35,6 +39,7 @@ class DataBaseTest(unittest.TestCase):
         self.assertEqual(user2.email, 'user2@mail.com')
 
     def testPassword(self):
+        """Test hashing of password"""
         user1 = Authors(name='UserOne', email='user1@mail.com')
         user1.set_password('user1')
 
@@ -43,6 +48,7 @@ class DataBaseTest(unittest.TestCase):
         self.assertTrue(user1.check_password('user1'))
 
     def testBlogWriting(self):
+        """Test adding blog to database and adding tags to blog"""
         user1 = Authors(name='UserOne', email='user1@mail.com')
         user1.set_password('user1')
 

@@ -11,7 +11,7 @@ def index():
     return render_template('home.html', title='Home', blogs=blogs)
 
 
-@bp.route('/tag/<tagName>')
+@bp.route('/tag/<string:tagName>')
 def search(tagName):
     """Route for filtering blogs by a specific tag
 
