@@ -37,6 +37,10 @@ main{
     text-align: left;
     margin-bottom: 50px;
 }
+.content pre {
+    max-width: 80vw;
+    overflow-y: auto;
+}
 .tags ul{
     display: flex;
     list-style-type: none;
