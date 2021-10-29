@@ -5,3 +5,4 @@ thumbnails
 blogApp/site.db
 .env
 .flaskenv
+.vscode
