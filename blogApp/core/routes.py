@@ -7,7 +7,8 @@ from blogApp.core import bp
 @bp.route('/')
 def index():
     """Route for homepage"""
-    blogs = Blogs.query.order_by(Blogs._created.desc()).limit(6).all()  # query six blogs in descending order from Blogs database
+    blogs = Blogs.query.order_by(Blogs._created.desc()).limit(
+        6).all()  # query six blogs in descending order from Blogs database
     return render_template('core/home.html', title='Home', blogs=blogs)
 
 
@@ -19,11 +20,12 @@ def search(tagName):
     ----------
     tagName : str
     """
-    tag = Tags.query.filter_by(name=tagName).first()  # query Tags database for a specific tag
+    tag = Tags.query.filter_by(name=tagName).first(
+    )  # query Tags database for a specific tag
 
     if tag:
         blogs = tag.blogs
     else:
         blogs = None
-        
+
     return render_template('core/tagSearchResults.html', searchResult=blogs, tag=tag)
