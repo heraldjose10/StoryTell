@@ -4,6 +4,7 @@ from blogApp.models import Authors
 
 class PrevLink(fields.Raw):
     """class for creating previous page link"""
+
     def format(self, value):
         if value['prev_num'] >= 1:
             return value['base_link']+str(value['prev_num'])
@@ -13,6 +14,7 @@ class PrevLink(fields.Raw):
 
 class NextLink(fields.Raw):
     """class for creating next page link"""
+
     def format(self, value):
         if value['next_num'] <= value['total']:
             return value['base_link']+str(value['next_num'])
@@ -20,6 +22,7 @@ class NextLink(fields.Raw):
             return ''
 
 
+# output format for induvidual blogs
 blog_fields = {
     '_links': {
         'self': {
@@ -40,7 +43,7 @@ blog_fields = {
     }))
 }
 
-
+# output format for listing blogs
 blogs_list_fields = {
     '_links': {
         'self': {
@@ -90,14 +93,27 @@ blogs_list_fields = {
     )
 }
 
+# output format for induvidual authors
 author_fields = {
     '_links': {
         'self': {
             'href': fields.Url('.author', absolute=True, scheme='https')
         }
     },
-    'id':fields.Integer,
-    'name':fields.String,
-    'email':fields.String,
-    'about':fields.String
+    'id': fields.Integer,
+    'name': fields.String,
+    'email': fields.String,
+    'about': fields.String
+}
+
+# output format for induvidual tags
+tag_feilds = {
+    '_links': {
+        'self': {
+            'href': fields.Url('.tag', absolute=True, scheme='https')
+        }
+    },
+    'id': fields.Integer(attribute='tag.id'),
+    'name': fields.String(attribute='tag.name'),
+    '_embedded': blogs_list_fields
 }

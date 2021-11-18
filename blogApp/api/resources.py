@@ -4,7 +4,7 @@ from flask_restful import Resource, marshal_with
 from blogApp.api import api
 from blogApp import db
 from blogApp.models import Blogs, Authors, Tags
-from .marshals import blog_fields, blogs_list_fields, author_fields
+from .marshals import blog_fields, blogs_list_fields, author_fields, tag_feilds
 
 
 class Blog(Resource):
@@ -45,7 +45,7 @@ class BlogsList(Resource):
             'next': {
                 'next_num': int(current_page)+1,
                 'base_link': f'{request.base_url}?limit={per_page}&offset=',
-                'total': total
+                'total': last_page_number
             },
             'blogs': blogs.items,
             'total': total,
@@ -69,6 +69,7 @@ class Author(Resource):
 
 class Tag(Resource):
     """methods for list of tags"""
+    @marshal_with(tag_feilds)
     def get(self, id):
         """Return tag resource
 
@@ -77,7 +78,32 @@ class Tag(Resource):
         id : int id of tag
         """
         tag = Tags.query.filter_by(id=id).first()
-        return tag
+
+        per_page = request.args.get('limit') or 5
+        current_page = request.args.get('offset') or 1
+        total = tag.blogs.count()
+        last_page_number = ceil(int(total)/int(per_page))
+
+        return {
+            'first': f'{request.base_url}?limit={per_page}&offset=1',
+            'self': f'{request.base_url}?limit={per_page}&offset={current_page}',
+            'last': f'{request.base_url}?limit={per_page}&offset={last_page_number}',
+            'prev': {
+                'prev_num': int(current_page)-1,
+                'base_link': f'{request.base_url}?limit={per_page}&offset='
+            },
+            'next': {
+                'next_num': int(current_page)+1,
+                'base_link': f'{request.base_url}?limit={per_page}&offset=',
+                'total': last_page_number
+            },
+            'id':id,
+            'total': total,
+            'count': int(per_page),
+            'tag': tag,
+            'blogs': tag.blogs.paginate(int(current_page), int(per_page)).items
+        }
+
 
 # add resources with routes and endpoints
 api.add_resource(BlogsList, '/api/blogs/', endpoint='blogs_list')
