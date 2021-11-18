@@ -3,6 +3,7 @@ from blogApp.models import Authors
 
 
 class PrevLink(fields.Raw):
+    """class for creating previous page link"""
     def format(self, value):
         if value['prev_num'] >= 1:
             return value['base_link']+str(value['prev_num'])
@@ -11,6 +12,7 @@ class PrevLink(fields.Raw):
 
 
 class NextLink(fields.Raw):
+    """class for creating next page link"""
     def format(self, value):
         if value['next_num'] <= value['total']:
             return value['base_link']+str(value['next_num'])
