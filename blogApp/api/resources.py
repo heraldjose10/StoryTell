@@ -4,7 +4,7 @@ from flask_restful import Resource, marshal_with
 from blogApp.api import api
 from blogApp import db
 from blogApp.models import Blogs, Authors, Tags
-from .marshals import blog_fields, blogs_list_fields, author_fields, tag_feilds
+from .marshals import blog_fields, blogs_list_fields, author_fields, tag_feilds, authors_list_fields
 
 
 class Blog(Resource):
@@ -67,6 +67,24 @@ class Author(Resource):
         return author
 
 
+class AuthorsList(Resource):
+    @marshal_with(authors_list_fields)
+    def get(self):
+        per_page = request.args.get('limit') or 5
+        current_page = request.args.get('offset') or 1
+        authors = Authors.query.order_by(Authors.id).paginate(int(current_page), int(per_page))
+        total = Authors.query.count()
+        return {
+            'authors':authors.items,
+            'links':{
+                'per_page': per_page,
+                'total':total,
+                'current_page':current_page,
+                'base_link':request.base_url
+            }
+        }
+
+
 class Tag(Resource):
     """methods for list of tags"""
     @marshal_with(tag_feilds)
@@ -109,4 +127,5 @@ class Tag(Resource):
 api.add_resource(BlogsList, '/api/blogs/', endpoint='blogs_list')
 api.add_resource(Blog, '/api/blogs/<int:id>', endpoint='blog')
 api.add_resource(Author, '/api/authors/<int:id>', endpoint='author')
+api.add_resource(AuthorsList,'/api/authors/', endpoint='authors_list')
 api.add_resource(Tag, '/api/tags/<int:id>', endpoint='tag')
