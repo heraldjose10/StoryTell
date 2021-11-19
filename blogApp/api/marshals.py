@@ -3,58 +3,68 @@ from flask_restful import fields
 
 
 class SelfLink(fields.Raw):
+    """class for creating link for current page"""
+
     def format(self, value):
         return value['base_link']+'?limit='+str(value['per_page'])+'&offset='+str(value['current_page'])
 
 
 class FirstLink(fields.Raw):
+    """class for creating link for first page"""
+
     def format(self, value):
         return value['base_link']+'?limit='+str(value['per_page'])+'&offset=1'
 
 
 class LastLink(fields.Raw):
+    """class for creating link for last page"""
+
     def format(self, value):
         last_page_number = ceil(int(value['total'])/int(value['per_page']))
         return value['base_link']+'?limit='+str(value['per_page'])+'&offset='+str(last_page_number)
 
 
 class PrevLinkNew(fields.Raw):
-    def format(self,value):
-        if int(value['current_page'])<=1:
+    """class for creating previous page link"""
+
+    def format(self, value):
+        if int(value['current_page']) <= 1:
             return ''
         else:
             prev_page = int(value['current_page'])-1
             return value['base_link']+'?limit='+str(value['per_page'])+'&offset='+str(prev_page)
 
-class PrevLink(fields.Raw):
-    """class for creating previous page link"""
 
-    def format(self, value):
-        if value['prev_num'] >= 1:
-            return value['base_link']+str(value['prev_num'])
-        else:
-            return ''
-
-
-class NextLink(fields.Raw):
+class NextLinkNew(fields.Raw):
     """class for creating next page link"""
 
     def format(self, value):
-        if value['next_num'] <= value['total']:
-            return value['base_link']+str(value['next_num'])
-        else:
-            return ''
-
-
-class NextLinkNew(fields.Raw):
-    def format(self,value):
         last_page_number = ceil(int(value['total'])/int(value['per_page']))
-        if int(value['current_page'])>=last_page_number:
+        if int(value['current_page']) >= last_page_number:
             return ''
         else:
             next_page = int(value['current_page'])+1
             return value['base_link']+'?limit='+str(value['per_page'])+'&offset='+str(next_page)
 
+
+# output format for navigation links
+_links = {
+    'self': {
+        'href': SelfLink(attribute='links')
+    },
+    'first': {
+        'href': FirstLink(attribute='links')
+    },
+    'last': {
+        'href': LastLink(attribute='links')
+    },
+    'prev': {
+        'href': PrevLinkNew(attribute='links')
+    },
+    'next': {
+        'href': NextLinkNew(attribute='links')
+    }
+}
 
 # output format for induvidual blogs
 blog_fields = {
@@ -79,23 +89,7 @@ blog_fields = {
 
 # output format for listing blogs
 blogs_list_fields = {
-    '_links': {
-        'self': {
-            'href': fields.String(attribute='self')
-        },
-        'first': {
-            'href': fields.String(attribute='first')
-        },
-        'prev': {
-            'href': PrevLink(attribute='prev'),
-        },
-        'next': {
-            'href': NextLink(attribute='next'),
-        },
-        'last': {
-            'href': fields.String(attribute='last'),
-        }
-    },
+    '_links': _links,
     'count': fields.Integer,
     'total': fields.Integer,
     'blogs': fields.List(
@@ -142,34 +136,18 @@ author_fields = {
 
 # output format for list of authors
 authors_list_fields = {
-    '_links':{
-        'self':{
-            'href':SelfLink(attribute='links')
-        },
-        'first':{
-            'href':FirstLink(attribute='links')
-        },
-        'last':{
-            'href':LastLink(attribute='links')
-        },
-        'prev':{
-            'href':PrevLinkNew(attribute='links')
-        },
-        'next':{
-            'href':NextLinkNew(attribute='links')
-        }
-    },
-    'count':fields.Integer(attribute = 'links.per_page'),
-    'total':fields.Integer(attribute='links.total'),
-    'authors':fields.List(fields.Nested({
-        '_links':{
-            'self':{
-                'href':fields.Url('.author', absolute=True, scheme='https')
+    '_links': _links,
+    'count': fields.Integer(attribute='links.per_page'),
+    'total': fields.Integer(attribute='links.total'),
+    'authors': fields.List(fields.Nested({
+        '_links': {
+            'self': {
+                'href': fields.Url('.author', absolute=True, scheme='https')
             }
         },
-        'id':fields.Integer,
-        'name':fields.String,
-        'email':fields.String
+        'id': fields.Integer,
+        'name': fields.String,
+        'email': fields.String
     }))
 }
 
