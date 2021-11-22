@@ -1,5 +1,5 @@
 from flask import request
-from flask_restful import Resource, marshal_with
+from flask_restful import Resource, marshal_with, reqparse
 from blogApp.api import api
 from blogApp import db
 from blogApp.models import Blogs, Authors, Tags
@@ -24,15 +24,24 @@ class Blog(Resource):
 class BlogsList(Resource):
     """methods for list of blogs"""
 
+    def __init__(self):
+        self.reqparse = reqparse.RequestParser(bundle_errors=True)
+        self.reqparse.add_argument(
+            'limit', type=int, location='args', help='limit should be integer')
+        self.reqparse.add_argument(
+            'offset', type=int, location='args', help='offset should be integer')
+        # super().__init__()
+
     @marshal_with(blogs_list_fields)
     def get(self):
         """Return blog resources"""
-        per_page = request.args.get('limit') or 5
-        current_page = request.args.get('offset') or 1
+        args = self.reqparse.parse_args()
+        per_page = args.get('limit') or 5
+        current_page = args.get('offset') or 1
         total = Blogs.query.count()
 
         blogs = Blogs.query.order_by(
-            Blogs._created.desc()).paginate(int(current_page), int(per_page))
+            Blogs._created.desc()).paginate(current_page, per_page)
 
         return {
             'blogs': blogs.items,
@@ -63,13 +72,22 @@ class Author(Resource):
 class AuthorsList(Resource):
     """methods for list of authors"""
 
+    def __init__(self):
+        self.reqparse = reqparse.RequestParser(bundle_errors=True)
+        self.reqparse.add_argument(
+            'limit', type=int, help='limit should be integer', location='args')
+        self.reqparse.add_argument(
+            'offset', type=int, help='offset should be integer', location='args')
+        # super().__init__()
+
     @marshal_with(authors_list_fields)
     def get(self):
         """Return list of author resource"""
-        per_page = request.args.get('limit') or 5
-        current_page = request.args.get('offset') or 1
+        args = self.reqparse.parse_args()
+        per_page = args.get('limit') or 5
+        current_page = args.get('offset') or 1
         authors = Authors.query.order_by(Authors.id).paginate(
-            int(current_page), int(per_page))
+            current_page, per_page)
         total = Authors.query.count()
         return {
             'authors': authors.items,
@@ -85,6 +103,14 @@ class AuthorsList(Resource):
 class Tag(Resource):
     """methods for list of tags"""
 
+    def __init__(self) -> None:
+        self.reqparse = reqparse.RequestParser(bundle_errors=True)
+        self.reqparse.add_argument(
+            'limit', type=int, help='limit should be integer', location='args')
+        self.reqparse.add_argument(
+            'offset', type=int, help='offset should be integer', location='args')
+        # super().__init__()
+
     @marshal_with(tag_feilds)
     def get(self, id):
         """Return tag resource
@@ -95,8 +121,9 @@ class Tag(Resource):
         """
         tag = Tags.query.filter_by(id=id).first()
 
-        per_page = request.args.get('limit') or 5
-        current_page = request.args.get('offset') or 1
+        args = self.reqparse.parse_args()
+        per_page = args.get('limit') or 5
+        current_page = args.get('offset') or 1
         total = tag.blogs.count()
 
         return {
@@ -108,9 +135,9 @@ class Tag(Resource):
             },
             'id': id,
             'total': total,
-            'count': int(per_page),
+            'count': per_page,
             'tag': tag,
-            'blogs': tag.blogs.paginate(int(current_page), int(per_page)).items
+            'blogs': tag.blogs.paginate(current_page, per_page).items
         }
 
 

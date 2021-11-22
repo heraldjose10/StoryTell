@@ -20,7 +20,7 @@ class LastLink(fields.Raw):
     """class for creating link for last page"""
 
     def format(self, value):
-        last_page_number = ceil(int(value['total'])/int(value['per_page']))
+        last_page_number = ceil(int(value['total'])/value['per_page'])
         return value['base_link']+'?limit='+str(value['per_page'])+'&offset='+str(last_page_number)
 
 
@@ -28,10 +28,10 @@ class PrevLinkNew(fields.Raw):
     """class for creating previous page link"""
 
     def format(self, value):
-        if int(value['current_page']) <= 1:
+        if value['current_page'] <= 1:
             return ''
         else:
-            prev_page = int(value['current_page'])-1
+            prev_page = value['current_page']-1
             return value['base_link']+'?limit='+str(value['per_page'])+'&offset='+str(prev_page)
 
 
@@ -39,11 +39,11 @@ class NextLinkNew(fields.Raw):
     """class for creating next page link"""
 
     def format(self, value):
-        last_page_number = ceil(int(value['total'])/int(value['per_page']))
-        if int(value['current_page']) >= last_page_number:
+        last_page_number = ceil(int(value['total'])/value['per_page'])
+        if value['current_page'] >= last_page_number:
             return ''
         else:
-            next_page = int(value['current_page'])+1
+            next_page = value['current_page']+1
             return value['base_link']+'?limit='+str(value['per_page'])+'&offset='+str(next_page)
 
 
@@ -90,8 +90,8 @@ blog_fields = {
 # output format for listing blogs
 blogs_list_fields = {
     '_links': _links,
-    'count': fields.Integer,
-    'total': fields.Integer,
+    'count': fields.Integer(attribute='links.per_page'),
+    'total': fields.Integer(attribute='links.total'),
     'blogs': fields.List(
         fields.Nested({
             '_links': {
