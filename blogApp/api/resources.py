@@ -1,9 +1,12 @@
-from flask import request
+import secrets
+from flask import request, current_app
 from flask_restful import Resource, marshal_with, reqparse
+from werkzeug.datastructures import FileStorage
 from blogApp.api import api
 from blogApp import db
 from blogApp.models import Blogs, Authors, Tags
 from .marshals import blog_fields, blogs_list_fields, author_fields, tag_feilds, authors_list_fields
+from .utils import tokens_required
 
 
 class Blog(Resource):
@@ -24,13 +27,23 @@ class Blog(Resource):
 class BlogsList(Resource):
     """methods for list of blogs"""
 
+    method_decorators = {'post': [tokens_required]}
+
     def __init__(self):
         self.reqparse = reqparse.RequestParser(bundle_errors=True)
         self.reqparse.add_argument(
             'limit', type=int, location='args', help='limit should be integer')
         self.reqparse.add_argument(
             'offset', type=int, location='args', help='offset should be integer')
-        # super().__init__()
+        self.reqparse.add_argument(
+            'title', type=str, help='title of blog is required', location='form')
+        self.reqparse.add_argument(
+            'tags', type=str, help='tags should be string separated by space', location='form')
+        self.reqparse.add_argument(
+            'content', type=str, help='content is required', location='form')
+        self.reqparse.add_argument(
+            'thumbnail', type=FileStorage, help='thumbnail size should be less than 5MB',
+            location='files')
 
     @marshal_with(blogs_list_fields)
     def get(self):
@@ -52,6 +65,46 @@ class BlogsList(Resource):
                 'base_link': request.base_url
             }
         }
+
+    def post(self, current_user):
+        """Create a blog"""
+        post_reqparse = self.reqparse.copy()
+        post_reqparse.replace_argument(
+            'content', type=str, help='content is required', location='form', required=True)
+        post_reqparse.replace_argument(
+            'title', type=str, help='title of blog is required', location='form', required=True)
+        args = post_reqparse.parse_args()
+
+        # split tags to get list of tags
+        tags = args['tags'].split(' ')
+        title = args['title']
+        content = args['title']
+
+        blog = Blogs(title=title, content=content, author=current_user)
+        db.session.add(blog)
+
+        for tag in tags:
+            # create new tag and add to database if tag doesnt already exist
+            t = Tags.query.filter_by(name=tag).first()
+            if t == None:
+                t = Tags(name=tag)
+                db.session.add(t)
+            t.blogs.append(blog)
+
+        # create a random name for thumbnail with 8 letters
+        random_hex = secrets.token_hex(8)
+        updated_file_name = random_hex + '.jpg'
+        thumbnail = args['thumbnail']
+        thumbnail.save(current_app.root_path +
+                       '/static/assets/thumbnails/'+updated_file_name)
+        blog.thumbnail = updated_file_name
+
+        db.session.commit()
+
+        return {
+            'msg': 'blog posted successfully',
+            'id': blog.id
+        }, 201
 
 
 class Author(Resource):
