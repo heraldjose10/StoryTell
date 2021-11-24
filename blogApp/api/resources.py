@@ -1,3 +1,4 @@
+import os
 import secrets
 from flask import request, current_app
 from flask_restful import Resource, marshal_with, reqparse
@@ -10,7 +11,24 @@ from .utils import tokens_required
 
 
 class Blog(Resource):
-    """methods for induvidual blog resource"""
+    """methods for individual blog resource"""
+
+    method_decorators = {
+        'delete': [tokens_required],
+        'patch': [tokens_required]
+    }
+
+    def __init__(self):
+        self.reqparse = reqparse.RequestParser()
+        self.reqparse.add_argument(
+            'title', type=str, help='title should be string', location='form')
+        self.reqparse.add_argument(
+            'tags', type=str, help='tags should be string separated by space', location='form')
+        self.reqparse.add_argument(
+            'content', type=str, help='content is required', location='form')
+        self.reqparse.add_argument(
+            'thumbnail', type=FileStorage, help='thumbnail size should be less than 5MB',
+            location='files')
 
     @marshal_with(blog_fields)
     def get(self, id):
@@ -22,6 +40,99 @@ class Blog(Resource):
         """
         blog = Blogs.query.filter_by(id=id).first()
         return blog
+
+    def delete(self, current_user, id):
+        """Delete a individual blog
+
+        Parameters
+        ----------
+        id : int id of blog
+        current_user : Authors object(user who sent the request)
+        """
+        blog = Blogs.query.filter_by(id=id).first()
+
+        if not blog:
+            return {'msg': 'there is no blog with id {}'.format(id)}, 404
+
+        if blog.author == current_user:
+            try:
+                file_path = os.path.join(
+                    current_app.root_path, 'static/assets/thumbnails/', blog.thumbnail)
+                os.remove(file_path)
+            except FileNotFoundError:
+                pass
+            db.session.delete(blog)
+            db.session.commit()
+            return {'msg': 'blog deleted successfully'}, 200
+
+        return {'msg': 'you do not have permission to delete this blog'}, 403
+
+    def patch(self, current_user, id):
+        """update a already existing blog
+
+        Parameters
+        ----------
+        id : int id of blog
+        current_user : Authors object(user who sent the request)
+        """
+        blog = Blogs.query.filter_by(id=id).first()
+
+        args = self.reqparse.parse_args()
+        title = args['title']
+        tags = args['tags']
+        content = args['content']
+        thumbnail = args['thumbnail']
+
+        if not blog:
+            return {'msg': 'there is no blog with id {}'.format(id)}, 404
+
+        if blog.author == current_user:
+
+            if title:
+                blog.title = title
+
+            if tags:
+
+                to_remove = blog.tags  # remove all the already existing tags of blog
+                while to_remove:
+                    blog.tags.remove(to_remove[0])
+                    to_remove = blog.tags
+                db.session.commit()
+
+                tags = tags.split(' ')
+                for tag in tags:
+                    # create new tag and add to database if tag doesnt already exist
+                    t = Tags.query.filter_by(name=tag).first()
+                    if t == None:
+                        t = Tags(name=tag)
+                        db.session.add(t)
+                    t.blogs.append(blog)
+
+            if content:
+                blog.content = content
+
+            if thumbnail:
+                # delete existing thumbnail
+                try:
+                    file_path = os.path.join(
+                        current_app.root_path, 'static/assets/thumbnails/', blog.thumbnail)
+                    os.remove(file_path)
+                except FileNotFoundError:
+                    pass
+
+                updated_file_name = secrets.token_hex(8) + '.jpg'
+                thumbnail.save(current_app.root_path +
+                               '/static/assets/thumbnails/' + updated_file_name)
+                blog.thumbnail = updated_file_name
+
+            db.session.commit()
+
+            return {
+                'msg': 'blog updated successfully',
+                'id': blog.id
+            }, 200
+
+        return {'msg': 'you do not have permission to update this blog'}, 403
 
 
 class BlogsList(Resource):
@@ -78,7 +189,7 @@ class BlogsList(Resource):
         # split tags to get list of tags
         tags = args['tags'].split(' ')
         title = args['title']
-        content = args['title']
+        content = args['content']
 
         blog = Blogs(title=title, content=content, author=current_user)
         db.session.add(blog)
@@ -108,7 +219,7 @@ class BlogsList(Resource):
 
 
 class Author(Resource):
-    """methods for induvidual author resouce"""
+    """methods for individual author resource"""
 
     @marshal_with(author_fields)
     def get(self, id):
