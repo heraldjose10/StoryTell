@@ -221,6 +221,18 @@ class BlogsList(Resource):
 class Author(Resource):
     """methods for individual author resource"""
 
+    method_decorators = {
+        'patch': [tokens_required]
+    }
+
+    def __init__(self) -> None:
+        self.reqparse = reqparse.RequestParser()
+        self.reqparse.add_argument(
+            'about', type=str, help='about me should be string', location='form')
+        self.reqparse.add_argument(
+            'image_file', type=FileStorage, help='profile pic should be less than 5MB',
+            location='files')
+
     @marshal_with(author_fields)
     def get(self, id):
         """Return author resource
@@ -231,6 +243,44 @@ class Author(Resource):
         """
         author = Authors.query.filter_by(id=id).first()
         return author
+
+    def patch(self, current_user, id):
+        """Update a author details
+
+        Parameters
+        ----------
+        id : int id of blog
+        current_user : Authors object(user who sent the request)
+        """
+        args = self.reqparse.parse_args()
+
+        author = Authors.query.filter_by(id=id).first()
+
+        if not author:
+            return {'message': 'there is no author with id {}'.format(id)}
+
+        if author == current_user:
+
+            about = args['about']
+            profile_pic = args['image_file']
+
+            if about:
+                author.about = about
+
+            if profile_pic:
+                updated_file_name = secrets.token_hex(8)+'.jpg'
+                profile_pic.save(current_app.root_path +
+                                       '/static/assets/profile_pics/'+updated_file_name)
+                author.image_file = updated_file_name
+
+            db.session.commit()
+
+            return {
+                'msg': 'author details updated successfully',
+                'id': author.id
+            }, 200
+
+        return {'message': 'you do not have permission to update this'}, 403
 
 
 class AuthorsList(Resource):
@@ -262,6 +312,44 @@ class AuthorsList(Resource):
                 'base_link': request.base_url
             }
         }
+
+    def post(self):
+        """Create a author resource"""
+        post_reqparse = self.reqparse.copy()
+        post_reqparse.add_argument(
+            'name', type=str, help='name is required', required=True, location='form')
+        post_reqparse.add_argument(
+            'email', type=str, help='email is required', required=True, location='form')
+        post_reqparse.add_argument(
+            'password', type=str, help='password is required', required=True, location='form')
+        args = post_reqparse.parse_args()
+
+        name = args['name']
+        email = args['email']
+        password = args['password']
+
+        # return error message if username or email is taken
+        message = {}
+        author = Authors.query.filter_by(name=name).first()
+        if author:
+            message['name'] = 'Username is already taken'
+
+        author = Authors.query.filter_by(email=email).first()
+        if author:
+            message['email'] = 'A account already exists for this email'
+
+        if message:
+            return {'message': message}
+
+        author = Authors(name=name, email=email)
+        author.set_password(password)
+        db.session.add(author)
+        db.session.commit()
+
+        return {
+            'message': 'author created successfully',
+            'id': author.id
+        }, 201
 
 
 class Tag(Resource):
