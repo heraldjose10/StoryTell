@@ -18,7 +18,7 @@
     {% if title %}
         <title>{{ title }}</title>
     {% else %}
-        <title>MyBlog</title>
+        <title>StoryTell</title>
     {% endif %}
 </head>
 <body>
@@ -26,7 +26,7 @@
         <header>
             <div class="header-container">
                 <div class="banner">
-                    StoryTell
+                    <a href="{{ url_for('core.index') }}">StoryTell</a>
                     <input type="checkbox" id="nav-checkbox" class="hide" onchange="navbarButton()">
                     <label for="nav-checkbox" class="hide">
                         <i class="fas fa-bars"></i>
@@ -72,7 +72,7 @@
                         About Us
                     </h1>
                     <p>
-                        Et architecto officiis eum et voluptas minus saepe quae. Unde rerum necessitatibus in. Consequatur maxime dolorum itaque dolores. Et architecto officiis eum et voluptas minus saepe quae. Unde rerum necessitatibus in.
+                        This webapp was made by me for sharing the new ideas and technologies I learn every day. I hope you find this informative and enjoyable!
                     </p>
                 </div>
                 <div class="contact-us">
@@ -82,7 +82,7 @@
                     <address>
                         <a href="mailto:heraldjose10@gmail.com">Email Us</a><br>
                         Visit us at:<br>
-                        Example.com<br>
+                        StoryTell.com<br>
                         Box 564, Disneyland<br>
                         USA
                     </address>
@@ -110,7 +110,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="">
+                            <a href="https://github.com/heraldjose10">
                                 <i class="fab fa-github"></i>
                             </a>
                         </li>

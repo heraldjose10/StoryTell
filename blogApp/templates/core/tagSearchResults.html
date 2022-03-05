@@ -12,11 +12,10 @@
             <a href="{{ url_for('core.search', tagName = tag.name) }}">{{ tag.name }}</a>
         </p>
         <h1>
-            Posts for "{{ tag.name }}"
+            Posts for "{{ tag }}"
         </h1>
         <div class="results">
             {% if searchResult %}
-            <!-- fix issue when blog is None -->
                 {% for blog in searchResult %}
                     <div class="card">
                         <a href="{{ url_for('posts.blogpage', blogid = blog.id) }}" class="postlink">
@@ -37,6 +36,18 @@
                         </ul>
                     </div>
                 {% endfor %}
+            {% else %}
+                <div class="no-tag">
+                    <p>This tag does not exist</p>
+                </div>
+            {% endif %}
+        </div>
+        <div class="pagination">
+            {% if prev_url %}
+                <a href="{{ prev_url }}">Prev</a>
+            {% endif %}
+            {% if next_url %}
+                <a href="{{ next_url }}">Next</a>
             {% endif %}
         </div>
     </main>

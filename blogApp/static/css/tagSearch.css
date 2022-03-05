@@ -23,6 +23,30 @@ main h1{
     justify-content: flex-start;
     flex-wrap: wrap;
 }
+.pagination{
+    display: flex;
+}
+.pagination a{
+    margin: 10px 10px 5px 0;
+    background-color: black;
+    color: white;
+    width: 100px;
+    height: 30px;
+    font-size: large;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+}
+.pagination a:hover{
+    color: black;
+    background-color: white;
+    border: 1px solid black;
+}
+.no-tag{
+    font-family: 'Roboto Slab', serif;
+    margin: 20px 0;
+}
 .card{
     margin-right: 50px;
     margin: 5vh 0;

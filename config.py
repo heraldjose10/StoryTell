@@ -7,6 +7,7 @@ class Config:
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     MAX_CONTENT_LENGTH = 5 * 1024 * 1024
     ASSETS_DEBUG = True
+    POSTS_PER_PAGE = 6
     MAIL_SERVER = environ.get('MAIL_SERVER')
     MAIL_PORT = int(environ.get('MAIL_PORT') or 25)
     MAIL_USE_TLS = environ.get('MAIL_USE_TLS') is not None

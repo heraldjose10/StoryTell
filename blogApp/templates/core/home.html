@@ -29,5 +29,13 @@
                 </div>
             {% endfor %}
         </div>
+        <div class="pagination">
+            {% if prev_url %}
+                <a href="{{ prev_url }}">Prev</a>
+            {% endif %}
+            {% if next_url %}
+                <a href="{{ next_url }}">Next</a>
+            {% endif %}
+        </div>
     </main>
 {% endblock main %}
