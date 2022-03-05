@@ -41,6 +41,21 @@ main{
     max-width: 80vw;
     overflow-y: auto;
 }
+.content iframe,
+.content img {
+    object-fit: cover;
+    max-width: 75vw;
+}
+.content table{
+    border: 1px black solid;
+    table-layout: fixed;
+    width: 100%;
+    text-overflow: ellipsis;
+    overflow: auto;
+}
+table td{
+    border: 1px black solid;
+}
 .tags ul{
     display: flex;
     list-style-type: none;
@@ -84,7 +99,7 @@ main{
     text-decoration: none;
     font-family: Verdana;   
 }
-@media screen and (max-width: 768px){
+@media screen and (max-width: 820px){
     .del-update-buttons{
         flex-direction: column;
     }
