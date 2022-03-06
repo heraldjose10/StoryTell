@@ -35,6 +35,8 @@ main{
     color: rgb(53, 52, 52);
     text-align: left;
     margin-bottom: 50px;
+    font-size: 1.15rem;
+    line-height: 1.5;
 }
 .content pre {
     max-width: 80vw;

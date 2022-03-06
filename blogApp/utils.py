@@ -16,7 +16,7 @@ def save_file(file, path):
     file = file.partition(",")[2]  # get encoded info of file
 
     # generate a random name for file
-    random_hex = secrets.token_hex(8)
+    random_hex = secrets.token_hex(6)
     updated_file_name = random_hex+'.jpeg'
     # create a full path for saving file
     file_path = os.path.join(current_app.root_path, path, updated_file_name)
