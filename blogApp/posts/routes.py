@@ -17,7 +17,7 @@ def blogpage(blogid):
     blogid : int
     """
     blog = Blogs.query.get(int(blogid))
-    return render_template('posts/blogpage.html', blog=blog)
+    return render_template('posts/blogpage.html', blog=blog, title = blog.title)
 
 
 @bp.route('/create_blog', methods=['Get', 'POST'])

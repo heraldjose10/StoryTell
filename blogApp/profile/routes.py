@@ -16,7 +16,7 @@ def profile(authorid):
     authorid : int
     """
     author = Authors.query.get_or_404(authorid)
-    return render_template('profile/author.html', author=author, title='Profile-'+author.name)
+    return render_template('profile/author.html', author=author, title=author.name)
 
 
 @bp.route('/profile/<int:authorid>/edit', methods=['GET', 'POST'])
