@@ -52,7 +52,6 @@ function connect(e){
 window.onload = addToList;
 
 function updateTags(){
-    alert('called');
     createTag();
 }
 
