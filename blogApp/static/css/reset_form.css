@@ -1,0 +1,64 @@
+fieldset {
+    font-family: Helvetica;
+    font-size: xx-large;
+    padding-bottom: 30px;
+}
+
+.form-set {
+    font-size: larger;
+    padding-bottom: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 500px;
+}
+
+.form-set.reset-mail {
+    width: 350px;
+}
+
+.form-set label {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.submit-button {
+    font-family: Verdana;
+    background-color: black;
+    color: white;
+    width: 80px;
+    height: 30px;
+    border: none;
+    font-size: large;
+    padding: 0px;
+}
+
+.submit-button:hover {
+    color: black;
+    background-color: white;
+    border: 1px solid black;
+}
+
+@media screen and (max-width: 700px) {
+    .form-set.password {
+      flex-direction: column;
+      max-width: 90vw;
+    }
+
+    .input {
+      max-width: 70vw;
+    }
+
+    .form-set.password label{
+      padding-bottom: 10px;
+  }
+}
+
+@media screen and (max-width: 500px){
+  .form-set.form-set.reset-mail {
+    flex-direction: column;
+  }
+
+  .form-set.reset-mail label{
+    padding-bottom: 10px;
+  }
+}
