@@ -29,7 +29,9 @@ function createTag() {
 const input = document.getElementById('js-target');
 const real_input = document.getElementsByClassName('hidden-input')[0];
 const post_btn = document.getElementById('post');
-const ul = document.getElementsByTagName('ul')[1];
+const ul = document.getElementById('tags-list');
+
+const form = document.getElementsByClassName('blogInput')[0];
 
 function addToList(){
     ul.querySelectorAll("li").forEach(tag=>{
@@ -49,8 +51,13 @@ function connect(e){
 }
 window.onload = addToList;
 
-input.addEventListener("input", connect);
+function updateTags(){
+    alert('called');
+    createTag();
+}
 
+input.addEventListener("input", connect);
+form.addEventListener('submit', updateTags)
 
 
 

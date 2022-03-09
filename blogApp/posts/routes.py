@@ -74,21 +74,39 @@ def update_post(blogid):
     form = BlogForm()
     if form.validate_on_submit():
 
-        to_remove = blog.tags  # remove all the tags of blog
+        new_tags = form.tags.data.split(' ')[:-1]
+
+        to_remove = []
+
+        existing_tags = blog.tags  
+        
+        # remove deleted tags of blog from db
+        for tag in existing_tags:
+            print(f'iterating {tag}')
+            if tag.name not in new_tags:
+                to_remove.append(tag)
+                
         while to_remove:
             blog.tags.remove(to_remove[0])
-            to_remove = blog.tags
-        db.session.commit()
+            to_remove.remove(to_remove[0])
 
         # add updated tags to blog
-        tags = form.tags.data.split(' ')[:-1]
-        for tag in tags:
+        for tag in new_tags:
             t = Tags.query.filter_by(name=tag).first()
-            if t == None:
+            if t:
+                if t not in existing_tags:
+                    t.blogs.append(blog)
+            else:
                 t = Tags(name=tag)
                 db.session.add(t)
-            t.blogs.append(blog)
+                t.blogs.append(blog)
 
+        if form.thumbnail_data.data:
+            # save thumbnail if thumbnail data is provided by user
+            img_data = form.thumbnail_data.data
+            thumbnail_name = save_file(img_data, 'static/assets/thumbnails/')
+            blog.thumbnail = thumbnail_name
+            
         # update title and content of blog and commit changes to database
         blog.title = form.title.data
         blog.content = form.editordata.data

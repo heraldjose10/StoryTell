@@ -47,6 +47,10 @@ main{
     object-fit: cover;
     max-width: 75vw;
 }
+.content a{
+    display: inline-block;
+    max-width: 80vw;
+}
 .content table{
     border: 1px black solid;
     table-layout: fixed;
