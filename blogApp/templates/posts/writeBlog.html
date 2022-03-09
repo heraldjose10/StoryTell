@@ -31,7 +31,7 @@
                     <div class="form-set">
                         {{ form.tags.label() }}
                         <div class="tags-container">
-                            <ul>
+                            <ul id="tags-list">
                                 {% for tag in tags %}
                                     <li onclick="removeTag(this, '{{ tag.name }}')">{{ tag.name }}</li>
                                 {% endfor %}
