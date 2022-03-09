@@ -22,7 +22,7 @@ def author():
             # redirect to next page after logging in if next page exists or redirect to homepage
             return redirect(next_page) if next_page else redirect(url_for('core.index'))
 
-    return render_template('auth/login.html', title='Login', form=form)
+    return render_template('auth/login.html', title='StoryTell Login', form=form)
 
 
 @bp.route('/logout')
@@ -49,7 +49,7 @@ def signup():
         db.session.commit()
         return redirect('author')  # redirect to login page
 
-    return render_template('auth/register.html', title='Register', form=form)
+    return render_template('auth/register.html', title='StoryTell Register', form=form)
 
 
 @bp.route('/reset_password_request', methods=['GET', 'POST'])

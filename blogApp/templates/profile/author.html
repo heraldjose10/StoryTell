@@ -1,5 +1,11 @@
 {% extends 'base.html' %}
 
+{% block opengraph %}
+    <!-- opengrapgh meta data -->
+    {{ super() }}
+    <meta property="og:title" content="{{ author.name }}" />
+{% endblock opengraph %}
+
 {% block styles %}
     <link rel="stylesheet" href="{{ url_for('static', filename = 'css/author_page.css') }}">
 {% endblock styles %}

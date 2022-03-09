@@ -18,7 +18,7 @@ def index():
 
     return render_template(
         'core/home.html',
-        title='Home',
+        title='StoryTell',
         blogs=blogs.items,
         next_url=next_url,
         prev_url=prev_url

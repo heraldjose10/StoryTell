@@ -1,5 +1,16 @@
 {% extends 'base.html' %}
 
+{% block opengraph %}
+    <!-- opengrapgh meta data -->
+    {{ super() }}
+    <meta property="og:title" content="{{ blog.title }}" />
+    <meta property="og:type" content="article" />
+    <meta property="og:image" content="{{ url_for('static', filename = 'assets/thumbnails/{}'.format(blog.thumbnail), _external = True) }}" />
+    <meta property="og:image:secure_url" content="{{ url_for('static', filename = 'assets/thumbnails/{}'.format(blog.thumbnail), _external = True) }}" />
+    <meta property="og:image:width" content="400" />
+    <meta property="og:image:height" content="225" />
+{% endblock opengraph %}
+
 {% block styles %}
     <link rel="stylesheet" href="{{ url_for('static', filename = '/css/blogpage.css') }}">
 {% endblock styles %}
