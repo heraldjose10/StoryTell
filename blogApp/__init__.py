@@ -1,3 +1,4 @@
+import boto3
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
@@ -17,6 +18,14 @@ migrate = Migrate()
 assets = Environment()
 moment = Moment()
 mail = Mail()
+
+
+# create a boto3 client for uplaoding to s3
+s3 = boto3.client(
+    's3',
+    aws_access_key_id=Config.AWS_ACCESS_KEY,
+    aws_secret_access_key=Config.AWS_SECRET
+)
 
 
 def create_app(config_class=Config):

@@ -15,7 +15,7 @@
         <div class="profile-card">
             <div class="profile-headers">
                 <div class="profile-pic">
-                    <img src="{{ url_for('static', filename = 'assets/profile_pics/{}'.format(author.image_file)) }}" alt="profile-picture">
+                    <img src="{{ 'https://s3-ap-south-1.amazonaws.com/storytell-files/{}'.format(author.image_file) }}" alt="profile-picture">
                 </div>
                 <div class="header-set-1">
                     <h1>{{ author.name }}</h1>

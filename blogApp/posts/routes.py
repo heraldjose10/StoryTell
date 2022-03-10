@@ -82,7 +82,6 @@ def update_post(blogid):
         
         # remove deleted tags of blog from db
         for tag in existing_tags:
-            print(f'iterating {tag}')
             if tag.name not in new_tags:
                 to_remove.append(tag)
                 

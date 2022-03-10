@@ -20,7 +20,7 @@
                     <div class="card">
                         <a href="{{ url_for('posts.blogpage', blogid = blog.id) }}" class="postlink">
                             <div class="post">
-                                <img src="{{ url_for('static', filename = 'assets/thumbnails/{}'.format(blog.thumbnail)) }}">
+                                <img src="{{ 'https://s3-ap-south-1.amazonaws.com/storytell-files/{}'.format(blog.thumbnail) }}">
                                 <h2>{{ blog.title }}</h2>
                             </div>
                         </a>

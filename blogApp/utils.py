@@ -3,10 +3,11 @@ import os
 import base64
 import bleach
 from flask import current_app
+from blogApp import s3
 
 
 def save_file(file, path):
-    """Save base64 encoded file in given path
+    """Save base64 encoded file in given path and uplaod to aws s3 bucket
 
     Parameters
     ----------
@@ -24,6 +25,11 @@ def save_file(file, path):
     with open(file_path, 'wb') as fh:
         # decode base64 string after converting to bytes
         fh.write(base64.decodebytes(bytes(file, 'utf-8')))
+        # upload the craeted file to aws s3 bucket
+        s3.upload_file(Bucket = 'storytell-files', Filename = file_path, Key = updated_file_name)
+        fh.close()
+    
+    os.remove(file_path)
 
     return updated_file_name
 

@@ -14,3 +14,5 @@ class Config:
     MAIL_USERNAME = environ.get('MAIL_USERNAME')
     MAIL_PASSWORD = environ.get('MAIL_PASSWORD')
     ADMINS = ['heraldjose11@gmail.com']
+    AWS_ACCESS_KEY = environ.get('AWS_ACCESS_KEY')
+    AWS_SECRET = environ.get('AWS_SECRET')
