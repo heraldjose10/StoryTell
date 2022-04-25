@@ -49,7 +49,7 @@ Mako==1.1.5
 MarkupSafe==2.0.1
 moment==0.12.1
 packaging==21.0
-paramiko==2.9.2
+paramiko==2.10.1
 pathspec==0.9.0
 pycodestyle==2.8.0
 pycparser==2.20
