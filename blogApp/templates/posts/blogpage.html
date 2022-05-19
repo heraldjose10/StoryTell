@@ -5,10 +5,11 @@
     {{ super() }}
     <meta property="og:title" content="{{ blog.title }}" />
     <meta property="og:type" content="article" />
-    <meta property="og:image" content="{{ 'https://s3-ap-south-1.amazonaws.com/storytell-files/{}'.format(blog.thumbnail) }}" />
+    <meta name="image" property="og:image" content="{{ 'https://s3-ap-south-1.amazonaws.com/storytell-files/{}'.format(blog.thumbnail) }}" />
     <meta property="og:image:secure_url" content="{{ 'https://s3-ap-south-1.amazonaws.com/storytell-files/{}'.format(blog.thumbnail) }}" />
     <meta property="og:image:width" content="1200" />
-        <!-- twitter tags -->
+    <meta property="og:article:published_time" content="{{ blog._created }}"/>
+    <!-- twitter tags -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="{{ blog.title }}">
     <meta name="twitter:image" content="{{ 'https://s3-ap-south-1.amazonaws.com/storytell-files/{}'.format(blog.thumbnail) }}">
